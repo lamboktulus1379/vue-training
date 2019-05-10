@@ -2,58 +2,19 @@
     <div class="boxRegister">
         <div @click="toggleFocus" class="form-register">
             <div class="form-content">
-                <label @click="toggleFocus" :class="{focus: isFocus, noFocus: isNotFocus}" for="username">{{ data[0] }}</label>
+                <label @click="toggleFocus" :class="{focus: isFocus, noFocus: isNotFocus}" :for="label">{{ label }}</label>
                 <input
                     @input="$emit('input', $event.target.value)"
                     @blur="toggleFocus"
                     :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
-                    id="username"
+                    :id="label"
                     :value="value"
                     autocomplete="false"
+                    :disabled="placeholder"
                     />
             </div>
 
-            <div class="formContent">
-                <label @click="toggleFocus" :class="{focus: isFocus, noFocus: isNotFocus}" for="email">{{ data[1] }}</label>
-                <input
-                    @input="$emit('input', $event.target.value)"
-                    @blur="toggleFocus"
-                    :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
-                    id="email"
-                    :value="value"
-                    autocomplete="false"
-                    />
-            </div>
-
-            <div class="formContent">
-                <label @click="toggleFocus" :class="{focus: isFocus, noFocus: isNotFocus}" for="password">{{ data[2] }}</label>
-                <input
-                    @input="$emit('input', $event.target.value)"
-                    @blur="toggleFocus"
-                    :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
-                    id="password"
-                    :value="value"
-                    autocomplete="false"
-                    />
-            </div>
-
-            <div class="formContent">
-                <label @click="toggleFocus" :class="{focus: isFocus, noFocus: isNotFocus}" for="confirm-password">{{ data[3] }}</label>
-                <input
-                    @input="$emit('input', $event.target.value)"
-                    @blur="toggleFocus"
-                    :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
-                    id="confirm-password"
-                    :value="value"
-                    autocomplete="false"
-                    />
-            </div>
-
-            <div class="formContent">
-                <button>Register</button>
-            </div>
-
-            <p>{{ value }}</p>
+            <p>{{ placeholder }}</p>
         </div>
     </div>
 </template>
@@ -67,18 +28,13 @@ export default {
             
             isFocusInput: false,
             isNotFocusInput: true,
-
-            data: [
-                "Username",
-                "Email",
-                "Password",
-                "Confirm Password"
-            ]
         }
     },
 
     props: [
-        'value'
+        'value',
+        'label',
+        'placeholder'
     ],
     methods: {
         toggleFocus: function() {

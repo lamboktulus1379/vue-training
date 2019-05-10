@@ -1,7 +1,14 @@
 <template>
     <div class="register">
         <h1>Register</h1>
-        <boxRegister @input="checkEmit">
+        <boxRegister 
+        @input="checkEmit" 
+        v-for="(item, index) in items" 
+        :key="index" 
+        v-model="item.value"
+        :label="item.whatInput"
+        :placeholder="item.ph"
+        >
             
         </boxRegister>
     </div>
@@ -13,13 +20,14 @@ export default {
         return {
             username: "",
             items: [
-                {whatInput: "Username", value: ""},
-                {whatInput: "Password", value: ""},
-                {whatInput: "Address", value: ""},
-                {whatInput: "DOB", value: ""},
+                {whatInput: "Username", value: "", ph: true},
+                {whatInput: "Password", value: "", ph: false},
+                {whatInput: "Address", value: "", ph: false},
+                {whatInput: "DOB", value: "", ph: false},
             ]
         }
     },
+
     components: {
         boxRegister
     },
