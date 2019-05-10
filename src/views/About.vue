@@ -2,9 +2,10 @@
   <div class="about">
     <h1>This is an about page</h1>
     <h3>Our Team</h3>
+   
    <div :style="boxWrapper">
      <boxContent :boxName='item.title' :boxPrice='item.completed' v-for="(item, index) in items" :key="index">
-     </boxContent>   
+     </boxContent>
     </div>
   </div>
 </template>
@@ -39,7 +40,8 @@
     },
 
     components: {
-      boxContent
+      boxContent,
+      navigationMenu,
     },
     
     mounted() {

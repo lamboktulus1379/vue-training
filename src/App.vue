@@ -1,16 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/contact">Contact</router-link> |
-      <router-link to="/employees">Employess</router-link> |
-      <router-link to="/register">Register</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div>
-    <router-view/>
+      <navigationMenu v-for="(menu, index) in menus" :key="index" :label="menu.name" :link="menu.link">  
+    </navigationMenu>
+    <router-view/>    
   </div>
 </template>
+<script>
+import navigationMenu from '@/components/navigationMenu'
+export default {
+  data: () => {
+        return {
+            menus: [
+                {name: "Home", link: "/", id: 1},
+                {name: "Contact", link: "/contact", id: 2},
+                {name: "About", link: "/about", id: 3},                
+                {name: "Employees", link: "/employees", id: 4},
+                {name: "Login", link: "/login", id: 5},
+            ],
+            loadAPI: false
+        }
+    },
+    components: {
+        navigationMenu,
+    }
+}
+</script>
+
 
 <style lang="scss">
 #app {

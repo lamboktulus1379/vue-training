@@ -1,6 +1,7 @@
 <template>
   <div class="contact">
       <h1>Contact</h1>
+     
     <ul id="ul-users">
         <li v-for="(item, index) in usersData" :key="index">
             {{ item.text }}
@@ -46,7 +47,6 @@
   </div>
 </template>
 <script>
-    
     export default {
         data: () => {
             return {
@@ -80,6 +80,9 @@
                 this.active = !this.active;
                 this.isActive = !this.isActive
             }
+        },
+        components: {
+            
         }
     }
 </script>

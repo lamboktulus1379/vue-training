@@ -1,7 +1,10 @@
 <template>
   <div class="users">
     <h1>This is an about Employees</h1>
-    <h3>Our Employees</h3>
+    <h3>Our Employees</h3>   
+      <loading v-if="loadAPI">
+
+    </loading>
    <div :style="employeeWrapper">
      <boxContent 
       v-for="(employee, index) in employeees" :key="index"
@@ -14,7 +17,10 @@
   </div>
 </template>
 <script>
-  import boxContent from '../components/boxEmployee'
+import navigationMenu from '../components/navigationMenu'
+  import boxContent from '../components/boxEmployee'  
+import loading from '../components/Loading'
+
   import axios from 'axios'
 
   export default {
@@ -24,7 +30,6 @@
             display: 'flex',
             'flexWrap': 'wrap'
           },
-
           employeees: [],
 
           boxContainer: {
@@ -33,20 +38,27 @@
             border: '1px solid #ccc',
             background: 'green'
           },
-          todos:[]
+          todos:[],
+          loadAPI: false,
       }
     },
 
     components: {
-      boxContent
+      boxContent,
+        navigationMenu,
+        loading,
     },
     
     mounted() {
+      this.loadAPI = true,
+
       axios.get('https://jsonplaceholder.typicode.com/photos')
         .then((data1) => {
           this.employeees = data1.data
         })
         .catch((error)=> {
+        }).finally(() => {
+          this.loadAPI = false
         })
     }
   }

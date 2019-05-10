@@ -2,19 +2,19 @@
     <div class="register">
         <h1>Register</h1>
         <boxRegister 
-        @input="checkEmit" 
-        v-for="(item, index) in items" 
-        :key="index" 
-        v-model="item.value"
-        :label="item.whatInput"
-        :placeholder="item.ph"
-        >
-            
+            @input="checkEmit" 
+            v-for="(item, index) in items" 
+            :key="index" 
+            v-model="item.value"
+            :label="item.whatInput"
+            :placeholder="item.ph"
+            >       
         </boxRegister>
     </div>
 </template>
 <script>
 import boxRegister from '../components/boxRegister'
+import navigationMenu from '../components/navigationMenu'
 export default {
     data: () => {
         return {
@@ -29,7 +29,7 @@ export default {
     },
 
     components: {
-        boxRegister
+        boxRegister,
     },
     methods: {
         checkEmit($event) {
