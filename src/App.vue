@@ -1,38 +1,88 @@
 <template>
   <div id="app">
-      <navigationMenu v-for="(menu, index) in menus" :key="index" :label="menu.name" :link="menu.link">  
-    </navigationMenu>
-    <router-view/>    
+    <navigationMenu :label="menus[0].name" :link="menus[0].link" :display="menus[0].show"/>
+    <navigationMenu :label="menus[1].name" :link="menus[1].link" :display="menus[1].show"/>
+    <navigationMenu :label="menus[2].name" :link="menus[2].link" :display="menus[2].show"/>
+    <navigationMenu :label="menus[3].name" :link="menus[3].link" :display="menus[3].show"/>
+    <navigationMenu :label="menus[4].name" :link="menus[4].link" v-if="!$store.getters.getLog"/>
+    <navigationMenu :label="menus[5].name" :link="menus[5].link" v-if="!$store.getters.getLog"/>
+    <br>
+    <router-view/>
   </div>
 </template>
 <script>
-import navigationMenu from '@/components/navigationMenu'
+import navigationMenu from "@/components/navigationMenu";
 export default {
-  data: () => {
-        return {
-            menus: [
-                {name: "Home", link: "/", id: 1},
-                {name: "Contact", link: "/contact", id: 2},
-                {name: "About", link: "/about", id: 3},                
-                {name: "Employees", link: "/employees", id: 4},
-                {name: "Login", link: "/login", id: 5},
-            ],
-            loadAPI: false
+  data: function() {
+    return {
+      cookieName: "userToken",
+      menus: [
+        { name: "Home", link: "/", id: 1, show: true },
+        { name: "Contact", link: "/contact", id: 2, show: true },
+        { name: "About", link: "/about", id: 3, show: true },
+        {
+          name: "Employees",
+          link: "/employees",
+          id: 4,
+          show: true
+        },
+        {
+          name: "Login",
+          link: "/login",
+          id: 5,
+          show: true
+        },
+        {
+          name: "Register",
+          link: "/register",
+          id: 6,
+          show: true
         }
+      ],
+      loadAPI: false
+    };
+  },
+  components: {
+    navigationMenu
+  },
+
+  methods: {
+    getCookie(cookieName) {
+      let name = cookieName + "=";
+      let ca = document.cookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+
+        if (c.indexOf(name) == 0) {
+          this.userToken = c.substring(name.length, c.length);
+
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
     },
-    components: {
-        navigationMenu,
+
+    checkCookie() {
+      let user = this.getCookie(this.cookieName);
     }
-}
+  },
+
+  updated() {
+    this.menus[4].show = !this.$store.getters.getLog;
+    this.menus[5].show = !this.$store.getters.getLog;
+  }
+};
 </script>
 
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 #nav {

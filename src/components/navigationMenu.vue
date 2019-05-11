@@ -1,43 +1,44 @@
 <template>
-   <nav>
- <ul class="nav-menu">
-        <li><router-link :to="link">{{ label }}</router-link></li>
+  <nav>
+    <ul class="nav-menu">
+      <li>
+        <router-link :to="link">{{ label }}</router-link>
+      </li>
     </ul>
-   </nav>
+  </nav>
 </template>
 <script>
 export default {
-    data: () => {
-        return {
+  data: () => {
+    return {};
+  },
 
-        }
-    },
-
-    props: [
-        'label',
-        'link'
-    ]
-}
+  props: ["label", "link", "display"]
+};
 </script>
 <style lang="scss" scoped>
-    .nav-menu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+nav {
+  background: blueviolet;
+  .nav-menu {
+    list-style: none;
 
-        li {
-            float: left;
-            
-            a {
-                text-decoration: none;
-                display: block;
-                padding: 5px;
-                background: rebeccapurple;
-                color: white;
-            }
+    li {
+      float: left;
+      a {
+        text-decoration: none;
+        display: block;
+        padding: 5px;
+        background: rebeccapurple;
+        font-size: 1.2em;
+        color: white;
+        border-left: 2px solid #ccc;
+        &.router-link-exact-active {
+          background: #42b983;
         }
-
+      }
     }
+  }
+}
 </style>
 
 

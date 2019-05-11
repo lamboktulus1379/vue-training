@@ -1,8 +1,8 @@
 <template>
     <div class="boxEmployee">
-        <h3>{{ employeeName }} </h3>
         <p> {{ employeeAddress }} </p>
         <img :src="employeeImage" width="100" height="100"/>
+        <h3>{{ employeeName }} </h3>
     </div>
 </template>
 <script>
