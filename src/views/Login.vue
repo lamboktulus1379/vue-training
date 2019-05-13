@@ -38,7 +38,8 @@ export default {
             this.setCookie(this.cookieName, this.cookieValue, this.exdays);
 
             this.$store.dispatch("login");
-            this.$store.dispatch("retEmail");
+            this.$store.dispatch("retEmail", this.userData.email);
+            this.$store.dispatch("retPassword", this.userData.password);
 
             this.$router.push("/");
           })

@@ -9,6 +9,7 @@
         >{{ label }}</label>
         <input
           @input="$emit('input', $event.target.value)"
+          :checked="checked"
           @blur="toggleFocus"
           @focus="toggleFocus"
           :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
@@ -16,8 +17,10 @@
           :value="value"
           :type="type"
           autocomplete="false"
+          :name="name"
           :disabled="placeholder"
         >
+        {{ inputDescription }}
       </div>
 
       <p>{{ value }}</p>
@@ -36,7 +39,15 @@ export default {
     };
   },
 
-  props: ["value", "label", "placeholder", "type"],
+  props: [
+    "value",
+    "label",
+    "placeholder",
+    "type",
+    "inputDescription",
+    "name",
+    "checked"
+  ],
   methods: {
     toggleFocus: function() {
       this.isNotFocus = !this.isNotFocus;
