@@ -62,13 +62,10 @@ export default {
 <style lang="scss" scoped>
 .form-register {
   width: 500px;
-  border: 1px solid #ccc;
-  background: #f5f5f5;
 
   .form-content {
     position: relative;
     width: 200px;
-    margin-top: 20px;
 
     label {
       display: block;
@@ -90,8 +87,6 @@ export default {
     }
 
     .focusInput {
-      border: 1px solid green;
-      border-radius: 2px;
       color: black;
     }
   }

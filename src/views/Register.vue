@@ -1,21 +1,39 @@
 <template>
-  <div class="register">
+  <div class="form-register">
     <h1>Register</h1>
-    <boxRegister v-model="userData.email" label="Email"/>
-    <boxRegister v-model="userData.password" label="Password" type="password"/>
+    <div class="form-wrapper">
+      <div class="form-content">
+        <boxRegister v-model="userData.email" label="Email"/>
+      </div>
+      <div class="form-content">
+        <boxRegister v-model="userData.password" label="Password" type="password"/>
+      </div>
 
-    <boxRadio v-model="userData.gender" label="Male"/>
-    <boxRadio v-model="userData.gender" label="Female"/>
-    <!-- :value="userData.gender" @input="$event.target.value" -->
+      <div class="form-content">
+        <boxRadio v-model="userData.gender" label="Male"/>
+        <boxRadio v-model="userData.gender" label="Female"/>
+      </div>
+      <!-- :value="userData.gender" @input="$event.target.value" -->
 
-    <boxCheck v-model="userData.hobby[0]" label="Fishing"/>
-    <boxCheck v-model="userData.hobby[1]" label="Swimming"/>
-    <boxCheck v-model="userData.hobby[2]" label="Football"/>
+      <div class="form-content">
+        <boxCheck v-model="userData.hobby[0]" label="Fishing"/>
+        <boxCheck v-model="userData.hobby[1]" label="Swimming"/>
+        <boxCheck v-model="userData.hobby[2]" label="Football"/>
+      </div>
 
-    <boxSelect v-model="userData.placeOfBirth" :cities="cities"/>
+      <div class="form-content">
+        <boxSelect v-model="userData.placeOfBirth" :cities="cities"/>
+      </div>
 
-    <br>
-    <button @click="sendDataRegister">Register</button>
+      <div class="form-content">
+        <boxJob @input="fJobFilter" :val="jobValue" :placeholder="placeholder"/>
+        <boxJobArea v-if="jobFilter.length" @click="fJobSend" :jobs="jobFilter"/>
+      </div>
+
+      <div class="form-content">
+        <button @click="sendDataRegister">Register</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -24,12 +42,15 @@ import navigationMenu from "../components/navigationMenu";
 import boxRadio from "../components/boxRadio";
 import boxCheck from "../components/boxCheck";
 import boxSelect from "../components/boxSelect";
+import boxJob from "../components/boxJob";
+import boxJobArea from "../components/boxJobArea";
 
 import axios from "axios";
 export default {
   data: () => {
     return {
       username: "",
+      placeholder: "What Job are you looking for",
 
       items: [
         { whatInput: "Username", type: "text", value: "", ph: false },
@@ -49,10 +70,22 @@ export default {
         password: "",
         gender: "Female",
         hobby: [],
-        placeOfBirth: ""
+        placeOfBirth: "",
+        job: ""
       },
 
-      cities: ["Medan", "Jakarta", "Surabaya"]
+      cities: ["Medan", "Jakarta", "Surabaya"],
+
+      jobs: [
+        "Programmer",
+        "UI/UX Designer",
+        "Graphic Designer",
+        "Software Engineer",
+        "Admin"
+      ],
+      jobExist: false,
+      jobFilter: [],
+      jobValue: ""
     };
   },
 
@@ -60,17 +93,35 @@ export default {
     boxRegister,
     boxRadio,
     boxCheck,
-    boxSelect
+    boxSelect,
+    boxJob,
+    boxJobArea
   },
   methods: {
+    fJobFilter($event) {
+      let dataInput = $event;
+      if (dataInput.length > 0) {
+        this.jobFilter = this.jobs.filter(function(dt) {
+          if (dt.includes(dataInput)) {
+            return dt;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        this.jobFilter = [];
+      }
+    },
+
+    fJobSend($event) {
+      let dataSend = $event;
+
+      this.jobValue = dataSend;
+      this.jobFilter = [];
+    },
     addHobby() {},
     checkEmit($event) {
       // console.log($event)
-    },
-
-    getRadioValue() {
-      this.userData.gender = "aaaa";
-      alert("AAAA");
     },
 
     sendDataRegister() {
@@ -133,3 +184,22 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.form-wrapper {
+  width: 500px;
+
+  .form-content {
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 1px 1px 2px #ccc;
+
+    .showClass {
+      visibility: visible;
+    }
+    .notShowClass {
+      visibility: hidden;
+    }
+  }
+}
+</style>

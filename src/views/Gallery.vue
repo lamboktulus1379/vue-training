@@ -1,11 +1,11 @@
 <template>
   <div class="image-gallery">
     <h3>Gallery</h3>
-    <boxGallery v-for="(image, index) in imageSource" :key="index" src/>
+    <boxGallery v-for="(image, index) in imageSource" :key="index" :imagePath="image.path"/>
   </div>
 </template>
 
-<script>
+<script> 
 import boxGallery from "../components/boxGallery";
 export default {
   data: () => {
@@ -15,25 +15,25 @@ export default {
           title: "My Image",
           name: "boise-downtown-1387405-639x424",
           extension: ".jpg",
-          path: "../assets/images/boise-downtown-1387405-639x424.jpg"
+          path: "~@/assets/images/boise-downtown-1387405-639x424.jpg"
         },
         {
           title: "My Image",
           name: "chicago-city-1224813-640x480",
           extension: ".jpg",
-          path: "../assets/chicago-city-1224813-640x480.jpg"
+          path: "/img/boise-downtown-1387405-639x424.jpg"
         },
         {
           title: "My Image",
           name: "chicago-city-1224822-640x480",
           extension: ".jpg",
-          path: "../assets/images/chicago-city-1224822-640x480.jpg"
+          path: "/img/chicago-city-1224822-640x480.jpg"
         },
         {
           title: "My Image",
           name: "chicago-night-traffic-1447010-640x480",
           extension: ".jpg",
-          path: "../assets/images/bchicago-night-traffic-1447010-640x480.jpg"
+          path: "/img/bchicago-night-traffic-1447010-640x480.jpg"
         }
       ]
     };
