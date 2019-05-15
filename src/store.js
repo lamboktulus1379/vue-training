@@ -10,7 +10,9 @@ export default new Vuex.Store({
     userPassword: "",
     userGender: "",
     userHobby: [],
-    userPlaceOfBirth: ""
+    userPlaceOfBirth: "",
+    userJobSeek: "",
+    userImage: ""
   },
   getters: {
     getLog(state) {
@@ -31,6 +33,12 @@ export default new Vuex.Store({
     },
     getPlaceOfBirth(state) {
       return state.userPlaceOfBirth;
+    },
+    getJobSeek(state) {
+      return state.userJobSeek;
+    },
+    getImage(state) {
+      return state.userImage;
     }
   },
   mutations: {
@@ -51,6 +59,12 @@ export default new Vuex.Store({
     },
     setPlaceOfBirth(state, retPlaceOfBirth) {
       state.userPlaceOfBirth = retPlaceOfBirth;
+    },
+    setJobSeek(state, retJobSeek) {
+      state.userJobSeek = retJobSeek;
+    },
+    setImage(state, retImage) {
+      state.userImage = retImage;
     }
   },
   actions: {
@@ -71,6 +85,12 @@ export default new Vuex.Store({
     },
     retPlaceOfBirth({ commit }, payload) {
       this.commit("setPlaceOfBirth", payload);
+    },
+    retJobSeek({ commit }, payload) {
+      this.commit("setJobSeek", payload);
+    },
+    retImage({ commit }, payload) {
+      this.commit("setImage", payload);
     }
   }
 });

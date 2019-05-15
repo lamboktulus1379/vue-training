@@ -1,5 +1,21 @@
 <template>
   <div class="form-register">
+    <boxModal
+      v-if="clickRegister"
+      :modalTitle="mTitle"
+      :modalBody="mBody"
+      :modalFoot="mFoot"
+      :hideModal="hModal"
+      :registerComplete="rComplete"
+    >
+      <div>
+        <button @click="hModal">Cancel</button>
+      </div>
+      <div>ldfjaj</div>
+      <div>
+        <button @click="rComplete">Okay</button>
+      </div>
+    </boxModal>
     <h1>Register</h1>
     <div class="form-wrapper">
       <div class="form-content">
@@ -31,6 +47,10 @@
       </div>
 
       <div class="form-content">
+        <boxFile @change="fCheckImage" val/>
+      </div>
+
+      <div class="form-content">
         <button @click="sendDataRegister">Register</button>
       </div>
     </div>
@@ -44,6 +64,8 @@ import boxCheck from "../components/boxCheck";
 import boxSelect from "../components/boxSelect";
 import boxJob from "../components/boxJob";
 import boxJobArea from "../components/boxJobArea";
+import boxFile from "../components/boxFile";
+import boxModal from "../components/boxModal";
 
 import axios from "axios";
 export default {
@@ -71,7 +93,8 @@ export default {
         gender: "Female",
         hobby: [],
         placeOfBirth: "",
-        job: ""
+        jobSeek: "",
+        image: ""
       },
 
       cities: ["Medan", "Jakarta", "Surabaya"],
@@ -85,7 +108,14 @@ export default {
       ],
       jobExist: false,
       jobFilter: [],
-      jobValue: ""
+      jobValue: "",
+      image: "",
+
+      mTitle: "This is a title",
+      mBody: "This is a body",
+      mFoot: "This is a footer",
+
+      clickRegister: false
     };
   },
 
@@ -95,36 +125,16 @@ export default {
     boxCheck,
     boxSelect,
     boxJob,
-    boxJobArea
+    boxJobArea,
+    boxFile,
+    boxModal
   },
   methods: {
-    fJobFilter($event) {
-      let dataInput = $event;
-      if (dataInput.length > 0) {
-        this.jobFilter = this.jobs.filter(function(dt) {
-          if (dt.includes(dataInput)) {
-            return dt;
-          } else {
-            return false;
-          }
-        });
-      } else {
-        this.jobFilter = [];
-      }
+    hModal() {
+      this.clickRegister = false;
     },
-
-    fJobSend($event) {
-      let dataSend = $event;
-
-      this.jobValue = dataSend;
-      this.jobFilter = [];
-    },
-    addHobby() {},
-    checkEmit($event) {
-      // console.log($event)
-    },
-
-    sendDataRegister() {
+    rComplete() {
+      this.clickRegister = false;
       let userEmail = this.userData.email;
       let userPassword = this.userData.password;
 
@@ -144,11 +154,60 @@ export default {
         this.$store.dispatch("retGender", this.userData.gender);
         this.$store.dispatch("retHobby", this.userData.hobby);
         this.$store.dispatch("retPlaceOfBirth", this.userData.placeOfBirth);
-
-        console.log(this.userData.placeOfBirth);
+        this.$store.dispatch("retJobSeek", this.userData.jobSeek);
+        this.$store.dispatch("retImage", this.image);
+        console.log(this.image);
 
         this.$router.push("/");
       }
+    },
+    fCheckImage($event) {
+      let file = $event;
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = function() {
+        this.image = reader.result;
+
+        console.log(this.image);
+      };
+      reader.onerror = function() {
+        console.log(reader.error);
+      };
+    },
+    fJobFilter($event) {
+      let dataInput = $event;
+      if (dataInput.length > 0) {
+        this.jobFilter = this.jobs.filter(function(dt) {
+          if (dt.includes(dataInput)) {
+            return dt;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        this.jobFilter = [];
+      }
+    },
+
+    fJobSend($event) {
+      let dataSend = $event;
+
+      this.jobValue = dataSend;
+      this.userData.jobSeek = this.jobValue;
+      this.jobFilter = [];
+    },
+    addHobby() {},
+    checkEmit($event) {
+      // console.log($event)
+    },
+
+    sendDataRegister() {
+      this.clickRegister = true;
+
+      this.mTitle = "Register";
+      this.mBody = "Are you sure you have filled in the data correctly?";
+      this.mFoot = "<< --- >>";
     },
 
     getCookie(cookieName) {

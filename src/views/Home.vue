@@ -8,6 +8,8 @@
       :userGender="$store.getters.getGender"
       :userHobby="$store.getters.getHobby"
       :userPlaceOfBirth="$store.getters.getPlaceOfBirth"
+      :userJobSeek="$store.getters.getJobSeek"
+      :userImage="$store.getters.getImage"
       :userToken="userToken"
     />
     <button @click="logoutUser">Logout</button>
@@ -139,45 +141,29 @@ export default {
 
       function ConvertToWordArray(string) {
         var lWordCount;
-
         var lMessageLength = string.length;
-
         var lNumberOfWords_temp1 = lMessageLength + 8;
-
         var lNumberOfWords_temp2 =
           (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
-
         var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
-
         var lWordArray = Array(lNumberOfWords - 1);
-
         var lBytePosition = 0;
-
         var lByteCount = 0;
-
         while (lByteCount < lMessageLength) {
           lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-
           lBytePosition = (lByteCount % 4) * 8;
-
           lWordArray[lWordCount] =
             lWordArray[lWordCount] |
             (string.charCodeAt(lByteCount) << lBytePosition);
-
           lByteCount++;
         }
 
         lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-
         lBytePosition = (lByteCount % 4) * 8;
-
         lWordArray[lWordCount] =
           lWordArray[lWordCount] | (0x80 << lBytePosition);
-
         lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
-
         lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
-
         return lWordArray;
       }
 
@@ -189,14 +175,11 @@ export default {
 
         for (lCount = 0; lCount <= 3; lCount++) {
           lByte = (lValue >>> (lCount * 8)) & 255;
-
           WordToHexValue_temp = "0" + lByte.toString(16);
-
           WordToHexValue =
             WordToHexValue +
             WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
         }
-
         return WordToHexValue;
       }
 
@@ -212,13 +195,10 @@ export default {
             utftext += String.fromCharCode(c);
           } else if (c > 127 && c < 2048) {
             utftext += String.fromCharCode((c >> 6) | 192);
-
             utftext += String.fromCharCode((c & 63) | 128);
           } else {
             utftext += String.fromCharCode((c >> 12) | 224);
-
             utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-
             utftext += String.fromCharCode((c & 63) | 128);
           }
         }
@@ -227,33 +207,25 @@ export default {
       }
 
       var x = Array();
-
       var k, AA, BB, CC, DD, a, b, c, d;
-
       var S11 = 7,
         S12 = 12,
         S13 = 17,
         S14 = 22;
-
       var S21 = 5,
         S22 = 9,
         S23 = 14,
         S24 = 20;
-
       var S31 = 4,
         S32 = 11,
         S33 = 16,
         S34 = 23;
-
       var S41 = 6,
         S42 = 10,
         S43 = 15,
         S44 = 21;
-
       string = Utf8Encode(string);
-
       x = ConvertToWordArray(string);
-
       a = 0x67452301;
       b = 0xefcdab89;
       c = 0x98badcfe;

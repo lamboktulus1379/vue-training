@@ -8,6 +8,8 @@
       <li v-for="(hobby, index) in userHobby" :key="index">{{ hobby }}</li>
     </ul>
     <p>Place of Birth: {{ userPlaceOfBirth}}</p>
+    <p>Job seek: {{ userJobSeek }}</p>
+    <p>Image : {{ userImage }}</p>
     <p>Token: {{ userToken }}</p>
   </div>
 </template>
@@ -26,7 +28,9 @@ export default {
     "userGender",
     "userHobby",
     "userPlaceOfBirth",
-    "userToken"
+    "userToken",
+    "userJobSeek",
+    "userImage"
   ]
 };
 </script>
