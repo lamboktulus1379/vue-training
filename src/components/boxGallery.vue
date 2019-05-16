@@ -1,8 +1,6 @@
 <template>
   <div @mouseover="stopSlideImage" @mouseout="slideImage" class="image-wrapper">
-    <transition name="fade">
-      <img v-if="show" :src="imagePath" width="640" height="480">
-    </transition>
+    <img v-if="show" :src="imagePath" width="640" height="480">
     <slot/>
   </div>
 </template>
@@ -20,10 +18,14 @@ export default {
 
 <style lang="scss" scoped>
 .image-wrapper {
+  position: absulute;
+  left: 50%;
+  margin-left: -320px;
   width: 640px;
   height: 480px;
   position: relative;
-
+  display: block;
+  box-shadow: 2px 2px 3px black;
   span {
     background: #f5f5f5;
     width: 20px;
@@ -58,18 +60,42 @@ export default {
     margin-left: -50px;
     background: rgba(0, 0, 0, 0.5);
   }
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.8s ease;
-  overflow: hidden;
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-  visibility: hidden;
+
+  .indicator-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    margin-left: -50px;
+    position: absolute;
+    bottom: 5px;
+    width: 100px;
+  }
+  .indicator-content {
+    width: 10px;
+    height: 10px;
+    background: blue;
+    border-radius: 50%;
+    box-shadow: 1px 1px 0.5px #f5f5f5;
+    transition: "box-shadow" ease-in 2s;
+    margin: 5px;
+  }
+  .indicator-content:hover {
+    cursor: pointer;
+  }
+  .active {
+    background: green;
+    box-shadow: none;
+  }
+  img {
+    display: block;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    outline: 2px solid #f5f5f5;
+  }
+  img:hover {
+    cursor: pointer;
+  }
 }
 </style>

@@ -6,6 +6,15 @@
         <span @click="leftImage" class="lessThan">&lt;</span>
         <span @click="rightImage" class="greaterThan">&gt;</span>
         <p>{{ imgTitle }}</p>
+        <div class="indicator-container">
+          <div
+            @click="imgShow(index)"
+            class="indicator-content"
+            :class="{active: cekImage(index)}"
+            v-for="(image, index) in imageSource"
+            :key="index"
+          ></div>
+        </div>
       </boxGallery>
     </div>
   </div>
@@ -21,6 +30,7 @@ import myImageFour from "@/assets/images/chicago-night-traffic-1447010-640x480.j
 export default {
   data: () => {
     return {
+      isActive: false,
       imgPath: myImageOne,
       imgId: 0,
       imgTitle: "My Image 1",
@@ -66,6 +76,19 @@ export default {
   },
 
   methods: {
+    cekImage(id) {
+      if (this.imgId == id) {
+        return true;
+      }
+      return false;
+    },
+    imgShow(idx) {
+      this.stopSlideImage;
+
+      this.imgPath = this.imageSource[idx].path;
+      this.imgTitle = this.imageSource[idx].title;
+      this.imgId = idx;
+    },
     stopSlideImage() {
       clearTimeout(this.sImage);
       this.sImage = null;

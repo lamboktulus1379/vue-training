@@ -4,9 +4,10 @@
     <navigationMenu :label="menus[1].name" :link="menus[1].link" :display="menus[1].show"/>
     <navigationMenu :label="menus[2].name" :link="menus[2].link" :display="menus[2].show"/>
     <navigationMenu :label="menus[3].name" :link="menus[3].link" :display="menus[3].show"/>
-    <navigationMenu :label="menus[4].name" :link="menus[4].link" v-if="!$store.getters.getLog"/>
+    <navigationMenu :label="menus[4].name" :link="menus[4].link" :display="menus[4].show"/>
     <navigationMenu :label="menus[5].name" :link="menus[5].link" v-if="!$store.getters.getLog"/>
-    <navigationMenu :label="menus[6].name" :link="menus[6].link" :display="menus[6].show"/>
+    <navigationMenu :label="menus[6].name" :link="menus[6].link" v-if="!$store.getters.getLog"/>
+    <navigationMenu :label="menus[7].name" :link="menus[7].link" :display="menus[7].show"/>
     <br>
     <router-view/>
   </div>
@@ -28,21 +29,27 @@ export default {
           show: true
         },
         {
+          name: "Products",
+          link: "/products",
+          id: 5,
+          show: true
+        },
+        {
           name: "Login",
           link: "/login",
-          id: 5,
+          id: 6,
           show: true
         },
         {
           name: "Register",
           link: "/register",
-          id: 6,
+          id: 7,
           show: true
         },
         {
           name: "Gallery",
           link: "/gallery",
-          id: 7,
+          id: 8,
           show: true
         }
       ],

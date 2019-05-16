@@ -57,6 +57,12 @@ export default new Router({
       name: "gallery",
 
       component: () => import("./views/Gallery.vue")
+    },
+    {
+      path: "/products",
+      name: "products",
+
+      component: () => import("./views/Products.vue")
     }
   ]
 });
