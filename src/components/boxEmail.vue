@@ -1,7 +1,7 @@
 <template>
-  <div class="boxRegister">
-    <div class="form-register">
-      <div class="form-content">
+  <div class="box-email">
+    <div class="box-email-wrapper">
+      <div class="box-email-content">
         <label
           @click="toggleFocus"
           :class="{focus: isFocus, noFocus: isNotFocus}"
@@ -58,17 +58,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.form-register {
+.box-email-wrapper {
   width: 500px;
 
-  .form-content {
+  .box-email-content {
     position: relative;
     width: 200px;
 
     label {
       display: block;
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 5px;
     }
 

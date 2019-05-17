@@ -19,10 +19,10 @@
     <h1>Register</h1>
     <div class="form-wrapper">
       <div class="form-content">
-        <boxRegister v-model="userData.email" label="Email"/>
+        <boxEmail v-model="userData.email" label="Email"/>
       </div>
       <div class="form-content">
-        <boxRegister v-model="userData.password" label="Password" type="password"/>
+        <boxPassword v-model="userData.password" label="Password" type="password"/>
       </div>
 
       <div class="form-content">
@@ -51,14 +51,15 @@
       </div>
 
       <div class="form-content">
-        <button @click="sendDataRegister">Register</button>
+        <button ref="refRegister" @click="sendDataRegister">Register</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import boxRegister from "../components/boxRegister";
-import navigationMenu from "../components/navigationMenu";
+import boxEmail from "../components/boxEmail";
+import boxPassword from "../components/boxPassword";
 import boxRadio from "../components/boxRadio";
 import boxCheck from "../components/boxCheck";
 import boxSelect from "../components/boxSelect";
@@ -120,7 +121,8 @@ export default {
   },
 
   components: {
-    boxRegister,
+    boxEmail,
+    boxPassword,
     boxRadio,
     boxCheck,
     boxSelect,
@@ -208,6 +210,9 @@ export default {
       this.mTitle = "Register";
       this.mBody = "Are you sure you have filled in the data correctly?";
       this.mFoot = "<< --- >>";
+
+      this.$refs.refRegister.innerText = "Processing register";
+      console.log(this.$refs);
     },
 
     getCookie(cookieName) {

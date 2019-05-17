@@ -5,22 +5,37 @@
       <tr>
         <th
           @click="sortProducts(dh)"
-          v-for="(dh, indexA) in Object.keys(dataHead[0])"
-          :key="indexA"
+          v-for="(dh, index) in Object.keys(dataHead[0])"
+          :key="index"
         >{{ dh.charAt(0).toUpperCase() + dh.slice(1) }}</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th colspan="2">Action</th>
       </tr>
-      <tr v-for="(db, indexA) in tempData" :key="`r-${indexA}`">
-        <td v-for="(dv, index) in db" :key="`d-${index}`">
-          <input v-if="indexA === editIndex" v-model="tempInput[index]">
-          <label v-else>{{ dv }}</label>
-        </td>
-        <td @click="changeData()" v-if="editIndex===indexA">Save</td>
-        <td @click="retId(indexA)" v-else>Edit</td>
-        <td @click="delData(indexA)">Delete</td>
-      </tr>
+      <template v-for="db in perPage">
+        <tr v-if="currentPage*db-1 < dataTemp.length" :key="db">
+          <td v-for="(dv, keyObject) in dataTemp[(currentPage*db)-1]" :key="`d-${keyObject}`">
+            <input v-if="checkIdData(db)" v-model="tempInput[keyObject]">
+            <label v-else>{{ dv }}</label>
+          </td>
+          <td @click="changeData(db)" v-if="editIndex===db">Save</td>
+          <td @click="changeIdData(db)" v-else>Edit</td>
+          <td @click="cancelEdit" v-if="editIndex===db">Cancel</td>
+          <td v-else @click="deleteData(db)">Delete</td>
+        </tr>
+      </template>
+      <template>
+        <tr class="products-pagination">
+          <td :colspan="Object.keys(dataHead[0]).length + 2">
+            <span
+              :class="{spanActive: cekPage(indexPage) }"
+              @click="movePage(indexPage)"
+              v-for="(indexPage) in Math.ceil(dataTemp.length/perPage)"
+              :key="`p-${indexPage}`"
+            >{{ indexPage }}</span>
+          </td>
+        </tr>
+      </template>
     </table>
+
     <template>
       <input type="text" placeholder="Product name" v-model="productInput.name">
       <input type="text" placeholder="Price" v-model="productInput.price">
@@ -36,8 +51,10 @@
 export default {
   data: () => {
     return {
-      tempData: [],
+      dataTemp: [],
 
+      currentPage: 1,
+      perPage: 2,
       editIndex: -1,
 
       productInput: {
@@ -56,39 +73,53 @@ export default {
   },
   props: ["dataHead"],
   methods: {
-    delData(idx) {
-      this.tempData.splice(idx, 1);
-    },
-    changeData() {
-      this.tempData[this.editIndex] = this.tempInput;
+    cancelEdit() {
       this.editIndex = -1;
     },
-    retId(idxClick) {
-      this.editIndex = idxClick;
-      this.tempInput = this.tempData[this.editIndex];
+    movePage(idx) {
+      this.currentPage = idx;
+      this.editIndex = -1;
     },
-    editProduct(idx) {
+    cekPage(idx) {
+      if (this.currentPage == idx) {
+        return true;
+      }
+      return false;
+    },
+    deleteData(idx) {
+      this.dataTemp.splice(idx - 1, 1);
+    },
+    changeData() {
+      this.dataTemp[this.editIndex - 1] = this.tempInput;
+      this.editIndex = -1;
+    },
+    changeIdData(idxClick) {
+      this.editIndex = idxClick;
+      this.tempInput = this.dataTemp[this.editIndex + this.currentPage - 2];
+    },
+    checkIdData(idx) {
       if (idx == this.editIndex) {
         return true;
       }
       return false;
     },
     sendProduct() {
-      this.tempData.push(this.productInput);
+      this.dataTemp.push(this.productInput);
+      this.currentPage = Math.ceil(this.dataTemp.length / this.perPage);
     },
     sortProducts(dHead) {
-      if (this.tempData.length < 1) {
+      if (this.dataTemp.length < 1) {
         this.dataHead = this.dataHead.sort((a, b) =>
           a.dHead > b.dHead ? 1 : -1
         );
       } else {
-        this.tempData = this.tempData.sort((a, b) =>
+        this.dataTemp = this.dataTemp.sort((a, b) =>
           a.dHead > b.dHead ? 1 : -1
         );
       }
     },
     searchItem($event) {
-      this.tempData = this.dataHead.filter(function(dh) {
+      this.dataTemp = this.dataHead.filter(function(dh) {
         if (
           Object.values(dh)
             .join(" ")
@@ -99,7 +130,7 @@ export default {
           return true;
         }
       });
-      console.log(this.tempData, $event.target.value);
+      console.log(this.dataTemp, $event.target.value);
     }
   },
 
@@ -115,8 +146,13 @@ export default {
   },
 
   mounted() {
+    this.dataTemp.push(...this.dataHead);
     //console.log(Object.keys(this.dataHead[0]));
-    this.tempData.push(...this.dataHead);
+
+    // for (let i = this.currentPage; i < this.perPage; i++) {
+    //   this.appendData.push(this.dataHead[this.currentPage]);
+    // }
+
     //a = [{asd:asd}, {asd:asd} , {asd:asd} , {asd:asd} , {asd:asd}]
     //b = []
     //b.push(a)
@@ -129,7 +165,9 @@ export default {
 
 <style lang="scss" scoped>
 table {
+  width: 100%;
   margin-top: 15px;
+  min-height: 200px;
   padding: 0;
   border-collapse: collapse;
   th,
@@ -153,6 +191,31 @@ table {
   }
   tr:nth-child(even) td {
     background: #ccc;
+  }
+  tr:last-child td {
+    border: none;
+    background: none;
+  }
+  .products-pagination {
+    td {
+      text-align: center;
+    }
+  }
+  span {
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 50%;
+    width: 20px;
+    margin: 5px;
+    padding: 2.5px;
+    height: 20px;
+  }
+  .spanActive {
+    font-weight: bold;
+    background: #ccc;
+  }
+  span:hover {
+    cursor: pointer;
   }
 }
 </style>

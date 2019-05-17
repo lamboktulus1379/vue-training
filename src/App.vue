@@ -8,6 +8,7 @@
     <navigationMenu :label="menus[5].name" :link="menus[5].link" v-if="!$store.getters.getLog"/>
     <navigationMenu :label="menus[6].name" :link="menus[6].link" v-if="!$store.getters.getLog"/>
     <navigationMenu :label="menus[7].name" :link="menus[7].link" :display="menus[7].show"/>
+    <navigationMenu :label="menus[8].name" :link="menus[8].link" :display="menus[7].show"/>
     <br>
     <router-view/>
   </div>
@@ -49,6 +50,12 @@ export default {
         {
           name: "Gallery",
           link: "/gallery",
+          id: 8,
+          show: true
+        },
+        {
+          name: "Quiz Time",
+          link: "/quiz",
           id: 8,
           show: true
         }

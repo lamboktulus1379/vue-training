@@ -28,6 +28,12 @@ export default {
           price: "300",
           quantity: "4",
           description: "Kecepatan Rata-rata 30km/jam"
+        },
+        {
+          name: "Kipas Angin 4",
+          price: "800",
+          quantity: "9",
+          description: "Kecepatan Rata-rata 70km/jam"
         }
       ]
     };

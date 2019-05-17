@@ -1,7 +1,7 @@
 <template>
-  <div class="boxRegister">
-    <div class="form-register">
-      <div class="form-content">
+  <div class="box-password">
+    <div class="box-password-wrapper">
+      <div class="box-password-content">
         <label
           @click="toggleFocus"
           :class="{focus: isFocus, noFocus: isNotFocus}"
@@ -58,10 +58,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.form-register {
+.box-password-wrapper {
   width: 500px;
 
-  .form-content {
+  .box-password-content {
     position: relative;
     width: 200px;
 
