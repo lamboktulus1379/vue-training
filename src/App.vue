@@ -96,7 +96,7 @@ export default {
     return {
       cookieName: "userToken",
       menus: [
-        { name: "Home", link: "/", id: 1, show: true },
+        { name: "Dashboard", link: "/", id: 1, show: true },
         { name: "Contact", link: "/contact", id: 2, show: true },
         { name: "About", link: "/about", id: 3, show: true },
         {
@@ -180,6 +180,7 @@ export default {
 
   mounted() {
     this.$refs.footYear.innerHTML = new Date().getFullYear();
+    this.getDevice;
   }
 };
 </script>
@@ -252,7 +253,8 @@ export default {
     section {
       background: #f5f5f5;
       width: 80%;
-      padding: 5px;
+      box-sizing: border-box;
+      padding: 15px 0 15px 0;
     }
   }
 
