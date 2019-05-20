@@ -1,18 +1,94 @@
 <template>
   <div id="app">
-    <navigationMenu :label="menus[0].name" :link="menus[0].link" :display="menus[0].show"/>
-    <navigationMenu :label="menus[1].name" :link="menus[1].link" :display="menus[1].show"/>
-    <navigationMenu :label="menus[2].name" :link="menus[2].link" :display="menus[2].show"/>
-    <navigationMenu :label="menus[3].name" :link="menus[3].link" :display="menus[3].show"/>
-    <navigationMenu :label="menus[4].name" :link="menus[4].link" :display="menus[4].show"/>
-    <navigationMenu :label="menus[5].name" :link="menus[5].link" v-if="!$store.getters.getLog"/>
-    <navigationMenu :label="menus[6].name" :link="menus[6].link" v-if="!$store.getters.getLog"/>
-    <navigationMenu :label="menus[7].name" :link="menus[7].link" :display="menus[7].show"/>
-    <navigationMenu :label="menus[8].name" :link="menus[8].link" :display="menus[7].show"/>
-    <br>
-    <router-view/>
+    <template>
+      <div class="container">
+        <template>
+          <header>
+            <div class="container">
+              <h1>Header</h1>
+            </div>
+          </header>
+        </template>
+        <template>
+          <div class="container">
+            <nav>
+              <ul>
+                <navigationMenu
+                  :label="menus[0].name"
+                  :link="menus[0].link"
+                  :display="menus[0].show"
+                />
+                <navigationMenu
+                  :label="menus[1].name"
+                  :link="menus[1].link"
+                  :display="menus[1].show"
+                />
+                <navigationMenu
+                  :label="menus[2].name"
+                  :link="menus[2].link"
+                  :display="menus[2].show"
+                />
+                <navigationMenu
+                  :label="menus[3].name"
+                  :link="menus[3].link"
+                  :display="menus[3].show"
+                />
+                <navigationMenu
+                  :label="menus[4].name"
+                  :link="menus[4].link"
+                  :display="menus[4].show"
+                />
+                <navigationMenu
+                  :label="menus[5].name"
+                  :link="menus[5].link"
+                  v-if="!$store.getters.getLog"
+                />
+                <navigationMenu
+                  :label="menus[6].name"
+                  :link="menus[6].link"
+                  v-if="!$store.getters.getLog"
+                />
+                <navigationMenu
+                  :label="menus[7].name"
+                  :link="menus[7].link"
+                  :display="menus[7].show"
+                />
+                <navigationMenu
+                  :label="menus[8].name"
+                  :link="menus[8].link"
+                  :display="menus[8].show"
+                />
+              </ul>
+            </nav>
+          </div>
+        </template>
+        <template>
+          <main>
+            <template>
+              <aside>Aside</aside>
+            </template>
+            <template>
+              <section>
+                <template>
+                  <router-view/>
+                </template>
+              </section>
+            </template>
+          </main>
+        </template>
+        <template>
+          <footer>
+            <p>
+              &copy; Our Website
+              <span ref="footYear"></span>
+            </p>
+          </footer>
+        </template>
+      </div>
+    </template>
   </div>
 </template>
+ 
 <script>
 import navigationMenu from "@/components/navigationMenu";
 export default {
@@ -58,6 +134,12 @@ export default {
           link: "/quiz",
           id: 8,
           show: true
+        },
+        {
+          name: "Dashboard",
+          link: "/dashboard",
+          id: 8,
+          show: true
         }
       ],
       loadAPI: false
@@ -94,6 +176,10 @@ export default {
   updated() {
     this.menus[4].show = !this.$store.getters.getLog;
     this.menus[5].show = !this.$store.getters.getLog;
+  },
+
+  mounted() {
+    this.$refs.footYear.innerHTML = new Date().getFullYear();
   }
 };
 </script>
@@ -101,60 +187,86 @@ export default {
 
 <style lang="scss">
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+.container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+
+  header {
+    background: black;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    h1 {
+      color: white;
+      text-align: center;
     }
   }
-}
-#ul-users {
-  li {
-    list-style-type: none;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-    padding: 5px;
+
+  nav {
+    background: rebeccapurple;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      li {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-size: 1.25em;
+      }
+      a {
+        text-decoration: none;
+        padding: 5px;
+        color: white;
+        height: 100%;
+        &.router-link-exact-active {
+          background: cornflowerblue;
+        }
+      }
+      a:hover {
+        background: cornflowerblue;
+      }
+    }
   }
-}
+  main {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    min-height: 500px;
+    background: #ccc;
 
-.active {
-  height: 100px;
-  width: 100px;
-  border: 1px solid #ccc;
-  background: blue;
-  p {
-    color: white;
+    aside {
+      background: #ccc;
+      width: 20%;
+      padding: 5px;
+    }
+    section {
+      background: #f5f5f5;
+      width: 80%;
+      padding: 5px;
+    }
   }
-}
 
-.container {
-  width: 800px;
-  flex-direction: row;
-  display: flex;
-}
-.content {
-  margin: 10px;
-}
+  footer {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    background: #171717;
+    height: 50px;
 
-.isActive {
-  height: 100px;
-  float: left;
-  width: 100px;
-  border: 1px solid #ccc;
-  background: white;
-  p {
-    color: blue;
+    p {
+      color: white;
+    }
   }
 }
 </style>

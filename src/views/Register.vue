@@ -1,59 +1,64 @@
 <template>
   <div class="form-register">
-    <boxModal
-      v-if="clickRegister"
-      :modalTitle="mTitle"
-      :modalBody="mBody"
-      :modalFoot="mFoot"
-      :hideModal="hModal"
-      :registerComplete="rComplete"
-    >
-      <div>
-        <button @click="hModal">Cancel</button>
-      </div>
-      <div>ldfjaj</div>
-      <div>
-        <button @click="rComplete">Okay</button>
-      </div>
-    </boxModal>
-    <h1>Register</h1>
-    <div class="form-wrapper">
-      <div class="form-content">
-        <boxEmail v-model="userData.email" label="Email"/>
-      </div>
-      <div class="form-content">
-        <boxPassword v-model="userData.password" label="Password" type="password"/>
-      </div>
+    <template>
+      <boxModal
+        v-if="clickRegister"
+        :modalTitle="mTitle"
+        :modalBody="mBody"
+        :modalFoot="mFoot"
+        :hideModal="hModal"
+        :registerComplete="rComplete"
+      >
+        <div>
+          <button @click="hModal">Cancel</button>
+        </div>
+        <div>--=--</div>
+        <div>
+          <button @click="rComplete">Okay</button>
+        </div>
+      </boxModal>
+    </template>
 
-      <div class="form-content">
-        <boxRadio v-model="userData.gender" label="Male"/>
-        <boxRadio v-model="userData.gender" label="Female"/>
-      </div>
-      <!-- :value="userData.gender" @input="$event.target.value" -->
+    <template>
+      <h1>Register</h1>
+      <div class="form-wrapper">
+        <div class="form-content">
+          <boxEmail v-model="userData.email" label="Email"/>
+        </div>
+        <div class="form-content">
+          <boxPassword v-model="userData.password" label="Password" type="password"/>
+        </div>
 
-      <div class="form-content">
-        <boxCheck v-model="userData.hobby[0]" label="Fishing"/>
-        <boxCheck v-model="userData.hobby[1]" label="Swimming"/>
-        <boxCheck v-model="userData.hobby[2]" label="Football"/>
-      </div>
+        <div class="form-content">
+          <boxRadio v-model="userData.gender" label="Male"/>
+          <boxRadio v-model="userData.gender" label="Female"/>
+        </div>
+        <!-- :value="userData.gender" @input="$event.target.value" -->
 
-      <div class="form-content">
-        <boxSelect v-model="userData.placeOfBirth" :cities="cities"/>
-      </div>
+        <div class="form-content">
+          <boxCheck v-model="userData.hobby[0]" label="Fishing"/>
+          <boxCheck v-model="userData.hobby[1]" label="Swimming"/>
+          <boxCheck v-model="userData.hobby[2]" label="Football"/>
+        </div>
 
-      <div class="form-content">
-        <boxJob @input="fJobFilter" :val="jobValue" :placeholder="placeholder"/>
-        <boxJobArea v-if="jobFilter.length" @click="fJobSend" :jobs="jobFilter"/>
-      </div>
+        <div class="form-content">
+          <boxSelect v-model="userData.placeOfBirth" :cities="cities"/>
+        </div>
 
-      <div class="form-content">
-        <boxFile @change="fCheckImage" val/>
-      </div>
+        <div class="form-content">
+          <boxJob @input="fJobFilter" :val="jobValue" :placeholder="placeholder"/>
+          <boxJobArea v-if="jobFilter.length" @click="fJobSend" :jobs="jobFilter"/>
+        </div>
 
-      <div class="form-content">
-        <button ref="refRegister" @click="sendDataRegister">Register</button>
+        <div class="form-content">
+          <boxFile @change="fCheckImage" val/>
+        </div>
+
+        <div class="form-content">
+          <button ref="refRegister" @click="sendDataRegister">Register</button>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 <script>

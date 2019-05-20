@@ -1,15 +1,23 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-    <boxLogin label="Email" v-model="userData.email"></boxLogin>
-    <boxLogin label="Password" type="password" v-model="userData.password"></boxLogin>
-
-    <button @click="loginUser">Login</button>
+    <div class="form-wrapper">
+      <div class="form-content">
+        <boxEmail v-model="userData.email" label="Email"/>
+      </div>
+      <div class="form-content">
+        <boxPassword v-model="userData.password" label="Password" type="password"/>
+      </div>
+      <div class="form-content">
+        <button @click="loginUser">Login</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import boxLogin from "../components/boxRegister";
+import boxEmail from "../components/boxEmail";
+import boxPassword from "../components/boxPassword";
 import axios from "axios";
 
 export default {
@@ -25,7 +33,8 @@ export default {
     };
   },
   components: {
-    boxLogin
+    boxEmail,
+    boxPassword
   },
 
   methods: {
@@ -49,6 +58,8 @@ export default {
           .finally(() => {
             // Finish
           });
+
+        this.$router.push("/");
       } else {
         alert("Field cannot be empty");
       }
@@ -101,3 +112,14 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.form-wrapper {
+  width: 500px;
+
+  .form-content {
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 1px 1px 2px #ccc;
+  }
+}
+</style>

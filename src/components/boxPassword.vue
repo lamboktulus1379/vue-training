@@ -1,23 +1,14 @@
 <template>
   <div class="box-password">
     <div class="box-password-wrapper">
-      <div class="box-password-content">
-        <label
-          @click="toggleFocus"
-          :class="{focus: isFocus, noFocus: isNotFocus}"
-          :for="label"
-        >{{ label }}</label>
+      <div @click="toggleFocus" @blur="toggleFocus" class="box-password-content">
+        <label :class="{focus: isFocus, noFocus: isNotFocus}" :for="label">{{ label }}</label>
         <input
+          ref="inputEmail"
           @input="$emit('input', $event.target.value)"
-          :checked="checked"
-          @blur="toggleFocus"
-          @focus="toggleFocus"
           :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
-          :id="label"
           :value="value"
-          :type="type"
           autocomplete="false"
-          :name="name"
           :disabled="placeholder"
         >
         {{ inputDescription }}
@@ -48,45 +39,52 @@ export default {
   ],
   methods: {
     toggleFocus: function() {
-      this.isNotFocus = !this.isNotFocus;
-      this.isFocus = !this.isFocus;
+      if (this.value.length < 1) {
+        this.isNotFocus = !this.isNotFocus;
+        this.isFocus = !this.isFocus;
 
-      this.isFocusInput = !this.isFocusInput;
-      this.isNotFocusInput = !this.isNotFocusInput;
+        this.isFocusInput = !this.isFocusInput;
+        this.isNotFocusInput = !this.isNotFocusInput;
+      }
+
+      this.$refs.inputEmail.focus();
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .box-password-wrapper {
-  width: 500px;
+  width: 100%;
 
   .box-password-content {
     position: relative;
-    width: 200px;
+    width: 100%;
+    box-sizing: border-box;
 
     label {
       display: block;
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 5px;
+      background: white;
+      border: 1px solid green($color: #000000);
     }
 
     input {
+      box-sizing: border-box;
       text-align: left;
       width: 100%;
-      outline: 1px solid green($color: #000000);
+      font-size: 1.25em;
       border: none;
-      outline: none;
-      color: white;
     }
 
     .focus {
-      top: -10px;
+      top: -15px;
     }
 
     .focusInput {
       color: black;
+      outline: none;
     }
   }
 }
