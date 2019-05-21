@@ -2,11 +2,18 @@
   <div class="vw-products">
     <h1>Products</h1>
     <boxProducts :dataHead="products"></boxProducts>
+
+    <div class="products-graph">
+      <canvas id="box-graph-canvas" width="480" height="640"></canvas>
+
+      <button @click="dGraph()">Graph</button>
+    </div>
   </div>
 </template>
 
 <script>
 import boxProducts from "../components/boxProducts";
+import boxGraph from "../components/boxGraph";
 export default {
   data: () => {
     return {
@@ -39,8 +46,15 @@ export default {
     };
   },
 
+  methods: {
+    dGraph() {
+      this.drawGraph();
+    }
+  },
+
   components: {
-    boxProducts
+    boxProducts,
+    boxGraph
   }
 };
 </script>

@@ -2,6 +2,13 @@
   <div class="quiz">
     <h1>Prepare yourself Bro!</h1>
     <boxQuiz :questions="questions"></boxQuiz>
+
+    <div class="game-board">
+      <div v-for="(item, key) in boards" :key="key">
+        {{ }}
+        <input maxlength="1" v-for="(val, key2) in item" :key="key2" :value="val">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,6 +17,18 @@ import boxQuiz from "../components/boxQuiz";
 export default {
   data: () => {
     return {
+      boards: [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ],
+
       questions: [
         {
           text: "Inside which HTML element do we put the JavaScript?",
@@ -101,9 +120,54 @@ export default {
 
   components: {
     boxQuiz
+  },
+
+  methods: {
+    selectItem($event) {
+      window.getSelection();
+    },
+    createGameBoard() {
+      for (let i = 0; i < 9; i++) {
+        let existed = [];
+        for (let j = 0; j < 9; j++) {
+          while (this.boards[i][j] === 0) {
+            let val = Math.floor(Math.random() * 9) + 1;
+            if (existed.includes(val)) {
+            } else {
+              this.boards[i][j] = val;
+              existed.push(val);
+            }
+          }
+        }
+      }
+    }
+  },
+
+  beforeMount() {
+    this.createGameBoard();
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.game-board {
+  margin: 15px;
+
+  div {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    justify-items: center;
+
+    input {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 1.5em;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+  }
+}
 </style>

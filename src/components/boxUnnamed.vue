@@ -1,7 +1,14 @@
 <template>
   <div class="box-unnamed">
-    Email :
-    <input :class="{isNotCorretData: isNotCorretData}" v-model="userEmail" @keyup="retEmail">
+    Full Name :
+    <input v-model="userFullName" @input="retFullName">
+    <br>Email :
+    <input
+      :class="{isNotCorretData: isNotCorretData}"
+      v-model="userEmail"
+      @keyup="retEmail"
+      @blur="retEmailMask"
+    >
     <br>Salary:
     <input v-model="userSalary" @input="retSalary">
     <br>Date In:
@@ -9,7 +16,14 @@
     <br>Date Out:
     <input v-model="userDateOut" @blur="retDifference">
     <br>
-    <p>{{ currentDate }}</p>
+
+    <p ref="emailMask"></p>
+    <p ref="currentDate">{{ currentDate }}</p>
+    <p ref="timeDifference">{{ currentDate }}</p>
+    <p ref="timeDifference">{{ currentDate }}</p>
+    <p>{{ this.getDevice() }}</p>
+
+    <button @click="registerUser">Register</button>
   </div>
 </template>
 
@@ -17,6 +31,7 @@
 export default {
   data: () => {
     return {
+      userFullName: "",
       userEmail: "",
       userSalary: "",
       userDateIn: "12/29/2019",
@@ -27,6 +42,13 @@ export default {
   },
 
   methods: {
+    retEmailMask() {
+      this.$refs.emailMask.innerHTML = this.maskEmail2(this.userEmail);
+    },
+    registerUser() {},
+    retFullName() {
+      this.userFullName = this.capitalizeWord(this.userFullName);
+    },
     retEmail() {
       if (this.checkEmail(this.userEmail)) {
         this.isNotCorretData = false;

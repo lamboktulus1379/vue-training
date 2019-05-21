@@ -41,7 +41,7 @@
 
       <template v-slot:unnamed2>
         <div class="tabs-content">
-          <h1>Unnamed 2</h1>
+          <boxGraph></boxGraph>
         </div>
       </template>
     </boxTabs>
@@ -53,6 +53,7 @@ import boxTabs from "../components/boxTabs";
 import boxEducation from "../components/boxEducation";
 import boxExperience from "../components/boxExperience";
 import boxUnnamed from "../components/boxUnnamed";
+import boxGraph from "../components/boxGraph";
 export default {
   data: () => {
     return {
@@ -97,7 +98,8 @@ export default {
     boxTabs,
     boxEducation,
     boxExperience,
-    boxUnnamed
+    boxUnnamed,
+    boxGraph
   }
 };
 </script>
