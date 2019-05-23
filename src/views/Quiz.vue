@@ -127,15 +127,15 @@ export default {
       window.getSelection();
     },
     createGameBoard() {
+      let existedRow = [];
       for (let i = 0; i < 9; i++) {
-        let existed = [];
+        existedRow = [];
         for (let j = 0; j < 9; j++) {
           while (this.boards[i][j] === 0) {
             let val = Math.floor(Math.random() * 9) + 1;
-            if (existed.includes(val)) {
-            } else {
+            if (!existedRow.includes(val)) {
               this.boards[i][j] = val;
-              existed.push(val);
+              existedRow.push(val);
             }
           }
         }

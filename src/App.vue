@@ -5,77 +5,33 @@
     <head>
       <meta charset="UTF-8">
     </head>
-
     <body>
       <template>
         <div class="container">
           <template>
             <header>
               <div class="container">
-                <h1>Header</h1>
+                <h1>Our Company</h1>
               </div>
             </header>
           </template>
           <template>
             <div class="container">
-              <nav>
-                <ul>
-                  <navigationMenu
-                    :label="menus[0].name"
-                    :link="menus[0].link"
-                    :display="menus[0].show"
-                  />
-                  <navigationMenu
-                    :label="menus[1].name"
-                    :link="menus[1].link"
-                    :display="menus[1].show"
-                  />
-                  <navigationMenu
-                    :label="menus[2].name"
-                    :link="menus[2].link"
-                    :display="menus[2].show"
-                  />
-                  <navigationMenu
-                    :label="menus[3].name"
-                    :link="menus[3].link"
-                    :display="menus[3].show"
-                  />
-                  <navigationMenu
-                    :label="menus[4].name"
-                    :link="menus[4].link"
-                    :display="menus[4].show"
-                  />
-                  <navigationMenu
-                    :label="menus[5].name"
-                    :link="menus[5].link"
-                    v-if="!$store.getters.getLog"
-                  />
-                  <navigationMenu
-                    :label="menus[6].name"
-                    :link="menus[6].link"
-                    v-if="!$store.getters.getLog"
-                  />
-                  <navigationMenu
-                    :label="menus[7].name"
-                    :link="menus[7].link"
-                    :display="menus[7].show"
-                  />
-                  <navigationMenu
-                    :label="menus[8].name"
-                    :link="menus[8].link"
-                    :display="menus[8].show"
-                  />
-                </ul>
-              </nav>
+              <template>
+                <div class="toggle-sidebar">
+                  <a @click="toogleSidebar">==</a>
+                </div>
+                <navigationMenu></navigationMenu>
+              </template>
             </div>
           </template>
           <template>
             <main>
               <template>
-                <aside>Aside</aside>
+                <aside :style="{width: tSidebarAside? '20%':'5%'}" id="sidebar">Aside</aside>
               </template>
               <template>
-                <section>
+                <section :style="{width: tSidebarSection? '95%':'80%'}" id="section">
                   <template>
                     <router-view/>
                   </template>
@@ -104,53 +60,9 @@ export default {
   data: function() {
     return {
       cookieName: "userToken",
-      menus: [
-        { name: "Dashboard", link: "/", id: 1, show: true },
-        { name: "Contact", link: "/contact", id: 2, show: true },
-        { name: "About", link: "/about", id: 3, show: true },
-        {
-          name: "Employees",
-          link: "/employees",
-          id: 4,
-          show: true
-        },
-        {
-          name: "Products",
-          link: "/products",
-          id: 5,
-          show: true
-        },
-        {
-          name: "Login",
-          link: "/login",
-          id: 6,
-          show: true
-        },
-        {
-          name: "Register",
-          link: "/register",
-          id: 7,
-          show: true
-        },
-        {
-          name: "Gallery",
-          link: "/gallery",
-          id: 8,
-          show: true
-        },
-        {
-          name: "Quiz Time",
-          link: "/quiz",
-          id: 8,
-          show: true
-        },
-        {
-          name: "Dashboard",
-          link: "/dashboard",
-          id: 8,
-          show: true
-        }
-      ],
+      tSidebarSection: true,
+      tSidebarAside: false,
+
       loadAPI: false
     };
   },
@@ -159,6 +71,10 @@ export default {
   },
 
   methods: {
+    toogleSidebar() {
+      this.tSidebar = !this.tSidebar;
+      this.tSidebarAside = !this.tSidebarAside;
+    },
     getCookie(cookieName) {
       let name = cookieName + "=";
       let ca = document.cookie.split(";");
@@ -182,11 +98,6 @@ export default {
     }
   },
 
-  updated() {
-    this.menus[4].show = !this.$store.getters.getLog;
-    this.menus[5].show = !this.$store.getters.getLog;
-  },
-
   mounted() {
     this.$refs.footYear.innerHTML = new Date().getFullYear();
     this.getDevice;
@@ -201,13 +112,14 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
 .container {
   display: flex;
   flex-flow: column;
   width: 100%;
 
   header {
-    background: black;
+    background: cornflowerblue;
     width: 100%;
     height: 50px;
     display: flex;
@@ -217,53 +129,121 @@ export default {
       text-align: center;
     }
   }
+  .navigation {
+    position: relative;
+  }
 
-  nav {
+  .nav {
     background: rebeccapurple;
+    position: relative;
+
     ul {
       list-style: none;
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 50px;
+      z-index: 1111;
+      box-shadow: 2px 2px 2px #171717;
+
       li {
-        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-        font-size: 1.25em;
-      }
-      a {
-        text-decoration: none;
-        padding: 5px;
-        color: white;
-        height: 100%;
-        &.router-link-exact-active {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        text-align: center;
+        a {
+          display: block;
+          width: 100px;
+          text-decoration: none;
+          background: rebeccapurple;
+          color: white;
+          width: 100%;
+          font-weight: bold;
+          position: relative;
+          font-size: 17px;
+          padding: 5px;
+          box-sizing: border-box;
+          &.router-link-exact-active {
+            background: cornflowerblue;
+            transform: 10;
+          }
+        }
+        a:hover {
           background: cornflowerblue;
         }
       }
-      a:hover {
-        background: cornflowerblue;
+    }
+
+    & > ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      & > li {
+        & > ul {
+          list-style: none;
+          position: absolute;
+          top: 30px;
+          left: 0;
+          display: none;
+          flex-flow: column;
+          & > li {
+            & > ul {
+              position: absolute;
+              top: 0px;
+              left: 100px;
+              display: none;
+              flex-flow: column;
+            }
+          }
+          & > li:hover > ul {
+            display: flex;
+          }
+        }
+      }
+      & > li:hover > ul {
+        display: flex;
       }
     }
+  }
+
+  .sticky {
+    top: 0;
+    width: 100%;
+    position: fixed;
   }
   main {
     display: flex;
     flex-flow: row;
     width: 100%;
+    margin-top: 3px;
     min-height: 500px;
     background: #ccc;
 
     aside {
       background: #ccc;
-      width: 20%;
       padding: 5px;
+      transition: width ease 1s;
     }
     section {
       background: #f5f5f5;
-      width: 80%;
+      padding: 5px;
       box-sizing: border-box;
-      padding: 15px 0 15px 0;
+      transition: width ease 2s;
+    }
+
+    .isSectionFull {
+      width: 80% auto;
+    }
+    .isSidebarFull {
+      width: 20% auto;
+    }
+
+    .isnSectionFull {
+      width: calc(100% - 20px);
+    }
+    .isnSidebarFull {
+      width: 20px;
     }
   }
 

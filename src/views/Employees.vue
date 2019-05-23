@@ -10,7 +10,7 @@
         :key="index"
         :employeeAddress="employee.id"
         :employeeImage="employee.thumbnailUrl"
-        :employeeName="employee.title"
+        :employeeName="retColorValue(employee.url)"
       ></boxContent>
     </div>
   </div>
@@ -49,12 +49,18 @@ export default {
     loading
   },
 
+  methods: {
+    retColorValue(s) {
+      return s.split("/")[4];
+    }
+  },
+
   mounted() {
     (this.loadAPI = true),
       axios
         .get("https://jsonplaceholder.typicode.com/photos")
-        .then(data1 => {
-          this.employeees = data1.data;
+        .then(dataRet => {
+          this.employeees = dataRet.data;
         })
         .catch(error => {})
         .finally(() => {
