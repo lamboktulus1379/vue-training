@@ -1,6 +1,10 @@
 import Vue from "vue";
+import tooltip from "@/components/boxTooltip";
 
 export default Vue.mixin({
+  components: {
+    tooltip
+  },
   methods: {
     parseThousand(number) {
       // 1.000.000
