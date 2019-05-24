@@ -1,6 +1,10 @@
 <template>
   <div class="navigation">
     <nav id="nav" ref="navMenu" class="nav">
+      <div class="toggle-sidebar">
+        <button v-if="isToggle" @click="toggleSidebar">==</button>
+        <button v-else @click="toggleSidebar">X</button>
+      </div>
       <ul>
         <li>
           <tooltip tooltip="This is dashboard!">
@@ -71,7 +75,17 @@ export default {
     return {};
   },
 
-  methods: {},
+  props: ["toggleSidebar", "isToggle"],
+
+  methods: {
+    toggleContent() {
+      if (this.$refs.btnToggle.innerHTML == "==") {
+        this.$refs.bToggle.innerHTML = "X";
+      } else {
+        this.$refs.btnToggle.innerHTML = "==";
+      }
+    }
+  },
 
   mounted() {
     document.addEventListener("scroll", function() {
@@ -102,12 +116,16 @@ export default {
   top: 5px;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 0.5px #ccc;
+
   &:hover {
     cursor: pointer;
   }
-  a {
-    color: white;
-    text-decoration: none;
+  button {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: bold;
   }
 }
 </style>
