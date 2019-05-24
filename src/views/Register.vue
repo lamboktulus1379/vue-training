@@ -259,8 +259,10 @@ export default {
   width: 500px;
 
   .form-content {
-    margin: 5px;
+    margin-top: 10px;
+    border-radius: 0 0 5px 0;
     padding: 5px;
+    border: 1px solid #ccc;
     box-shadow: 1px 1px 2px #ccc;
 
     .showClass {

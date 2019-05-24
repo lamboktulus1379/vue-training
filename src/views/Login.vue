@@ -117,7 +117,7 @@ export default {
   width: 500px;
 
   .form-content {
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
     box-shadow: 1px 1px 2px #ccc;
   }

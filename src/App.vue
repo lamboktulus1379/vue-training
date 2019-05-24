@@ -18,20 +18,17 @@
           <template>
             <div class="container">
               <template>
-                <div class="toggle-sidebar">
-                  <a @click="toogleSidebar">==</a>
-                </div>
-                <navigationMenu></navigationMenu>
+                <navigationMenu :isToggle="iToggle" :toggleSidebar="tSidebar"></navigationMenu>
               </template>
             </div>
           </template>
           <template>
             <main>
               <template>
-                <aside :style="{width: tSidebarAside? '20%':'5%'}" id="sidebar">Aside</aside>
+                <aside :style="{width: tSidebarAside? '5%':'20%'}" id="sidebar">Aside</aside>
               </template>
               <template>
-                <section :style="{width: tSidebarSection? '95%':'80%'}" id="section">
+                <section :style="{width: tSidebarSection? '80%':'95%'}" id="section">
                   <template>
                     <router-view/>
                   </template>
@@ -63,7 +60,9 @@ export default {
       tSidebarSection: true,
       tSidebarAside: false,
 
-      loadAPI: false
+      loadAPI: false,
+
+      iToggle: false
     };
   },
   components: {
@@ -71,9 +70,10 @@ export default {
   },
 
   methods: {
-    toogleSidebar() {
-      this.tSidebar = !this.tSidebar;
+    tSidebar() {
+      this.tSidebarSection = !this.tSidebarSection;
       this.tSidebarAside = !this.tSidebarAside;
+      this.iToggle = !this.iToggle;
     },
     getCookie(cookieName) {
       let name = cookieName + "=";
@@ -119,9 +119,9 @@ export default {
   width: 100%;
 
   header {
-    background: cornflowerblue;
+    background: #5dbcd2;
     width: 100%;
-    height: 50px;
+    height: 75px;
     display: flex;
     align-items: center;
     h1 {
@@ -134,13 +134,13 @@ export default {
   }
 
   .nav {
-    background: rebeccapurple;
     position: relative;
 
     ul {
       list-style: none;
-      z-index: 1111;
+      z-index: 10000;
       box-shadow: 2px 2px 2px #171717;
+      background: #5e12c6;
 
       li {
         position: relative;
@@ -148,11 +148,12 @@ export default {
         align-items: center;
         width: 100px;
         text-align: center;
+
         a {
           display: block;
           width: 100px;
           text-decoration: none;
-          background: rebeccapurple;
+          background: #5e12c6;
           color: white;
           width: 100%;
           font-weight: bold;
@@ -161,12 +162,14 @@ export default {
           padding: 5px;
           box-sizing: border-box;
           &.router-link-exact-active {
-            background: cornflowerblue;
-            transform: 10;
+            background: #5dbcd2;
+            color: white;
           }
         }
+
         a:hover {
-          background: cornflowerblue;
+          background: #5dbcd2;
+          color: white;
         }
       }
     }
@@ -211,6 +214,7 @@ export default {
     top: 0;
     width: 100%;
     position: fixed;
+    z-index: 100000;
   }
   main {
     display: flex;
@@ -229,7 +233,7 @@ export default {
       background: #f5f5f5;
       padding: 5px;
       box-sizing: border-box;
-      transition: width ease 2s;
+      transition: width 1s;
     }
 
     .isSectionFull {

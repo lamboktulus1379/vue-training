@@ -154,7 +154,7 @@ export default {
     .indicator-content {
       width: 10px;
       height: 10px;
-      background: blue;
+      background: #5dbcd2;
       border-radius: 50%;
       box-shadow: 1px 1px 0.5px #f5f5f5;
       transition: "box-shadow" ease-in 2s;
@@ -164,7 +164,7 @@ export default {
       cursor: pointer;
     }
     .active {
-      background: green;
+      background: #5e12c6;
       box-shadow: none;
     }
     img {
@@ -175,6 +175,7 @@ export default {
     }
     img:hover {
       cursor: pointer;
+      transform: scale(1.5);
     }
   }
 }

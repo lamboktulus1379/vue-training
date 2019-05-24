@@ -21,9 +21,11 @@ export default {
 <style lang="scss" scoped>
 .box-job {
   input {
-    width: 50%;
+    width: 100%;
     padding: 5px;
     font-size: 1.05em;
+    border: none;
+    outline: none;
   }
 }
 </style>

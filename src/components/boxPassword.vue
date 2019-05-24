@@ -46,8 +46,6 @@ export default {
         this.isFocusInput = !this.isFocusInput;
         this.isNotFocusInput = !this.isNotFocusInput;
       }
-
-      this.$refs.inputEmail.focus();
     }
   }
 };
@@ -64,18 +62,23 @@ export default {
     label {
       display: block;
       position: absolute;
-      top: 5px;
+      top: 3px;
       left: 5px;
-      background: white;
       border: 1px solid green($color: #000000);
+      transition: top ease-in 0.5s;
+      background: #f5f5f5;
+      padding: 0 5px;
     }
 
     input {
       box-sizing: border-box;
       text-align: left;
       width: 100%;
+      height: 100%;
+      background: #f5f5f5;
       font-size: 1.25em;
       border: none;
+      outline: none;
     }
 
     .focus {
