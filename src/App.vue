@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <template>
-<div id="app">
-  <html>
-    <head>
-      <meta charset="UTF-8">
-    </head>
-    <body>
-      <template>
-        <div class="container">
-          <template>
-            <header>
-              <div class="container">
-                <h1>Our Company</h1>
-              </div>
-            </header>
-          </template>
-          <template>
+  <div id="app">
+    <template>
+      <div class="container">
+        <template>
+          <header>
             <div class="container">
-              <template>
-                <navigationMenu :isToggle="iToggle" :toggleSidebar="tSidebar"></navigationMenu>
-              </template>
+              <h1>Our Company</h1>
             </div>
-          </template>
-          <template>
-            <main>
-              <template>
-                <aside :style="{width: tSidebarAside? '5%':'20%'}" id="sidebar">Aside</aside>
-              </template>
-              <template>
-                <section :style="{width: tSidebarSection? '80%':'95%'}" id="section">
-                  <template>
-                    <router-view/>
-                  </template>
-                </section>
-              </template>
-            </main>
-          </template>
-          <template>
-            <footer>
-              <p>
-                &copy; Our Website
-                <span ref="footYear"></span>
-              </p>
-            </footer>
-          </template>
-        </div>
-      </template>
-    </body>
-  </html>
-</div>
+          </header>
+        </template>
+        <template>
+          <div class="container">
+            <template>
+              <navigationMenu :isToggle="iToggle" :toggleSidebar="tSidebar"></navigationMenu>
+            </template>
+          </div>
+        </template>
+        <template>
+          <main>
+            <template>
+              <aside :style="{width: tSidebarAside? '5%':'20%'}" id="sidebar">Aside</aside>
+            </template>
+            <template>
+              <section :style="{width: tSidebarSection? '80%':'95%'}" id="section">
+                <template>
+                  <router-view/>
+                </template>
+              </section>
+            </template>
+          </main>
+        </template>
+        <template>
+          <footer>
+            <p>
+              &copy; Our Website
+              <span ref="footYear"></span>
+            </p>
+          </footer>
+        </template>
+      </div>
+    </template>
+  </div>
 </template>
  
 <script>
@@ -113,10 +106,16 @@ export default {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100vh;
+}
+
 .container {
   display: flex;
   flex-flow: column;
   width: 100%;
+  min-height: 100%;
 
   header {
     background: #5dbcd2;
@@ -140,7 +139,7 @@ export default {
       list-style: none;
       z-index: 10000;
       box-shadow: 2px 2px 2px #171717;
-      background: #5e12c6;
+      background: #171717;
 
       li {
         position: relative;
@@ -153,7 +152,7 @@ export default {
           display: block;
           width: 100px;
           text-decoration: none;
-          background: #5e12c6;
+          background: #171717;
           color: white;
           width: 100%;
           font-weight: bold;
@@ -221,7 +220,7 @@ export default {
     flex-flow: row;
     width: 100%;
     margin-top: 3px;
-    min-height: 500px;
+    flex: 1 1 0;
     background: #ccc;
 
     aside {
@@ -231,7 +230,6 @@ export default {
     }
     section {
       background: #f5f5f5;
-      padding: 5px;
       box-sizing: border-box;
       transition: width 1s;
     }

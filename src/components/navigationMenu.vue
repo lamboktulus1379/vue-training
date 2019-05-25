@@ -2,7 +2,7 @@
   <div class="navigation">
     <nav id="nav" ref="navMenu" class="nav">
       <div class="toggle-sidebar">
-        <button v-if="isToggle" @click="toggleSidebar">==</button>
+        <button v-if="isToggle" @click="toggleSidebar">>></button>
         <button v-else @click="toggleSidebar">X</button>
       </div>
       <ul>
@@ -64,6 +64,9 @@
               </ul>
             </li>
           </ul>
+        </li>
+        <li>
+          <router-link to="/tasks">Tasks</router-link>
         </li>
       </ul>
     </nav>
