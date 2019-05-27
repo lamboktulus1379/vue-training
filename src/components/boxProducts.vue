@@ -176,6 +176,7 @@ table {
   }
   th {
     padding: 10px;
+    background: #5dbcd2;
   }
   th:hover {
     cursor: pointer;
@@ -187,10 +188,10 @@ table {
     cursor: pointer;
   }
   tr:nth-child(odd) td {
-    background: #fff;
+    background: #ccc;
   }
   tr:nth-child(even) td {
-    background: #ccc;
+    background: #fff;
   }
   tr:last-child td {
     border: none;

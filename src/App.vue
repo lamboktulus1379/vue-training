@@ -106,16 +106,10 @@ export default {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100vh;
-}
-
 .container {
   display: flex;
   flex-flow: column;
   width: 100%;
-  min-height: 100%;
 
   header {
     background: #5dbcd2;
@@ -220,8 +214,8 @@ body {
     flex-flow: row;
     width: 100%;
     margin-top: 3px;
-    flex: 1 1 0;
     background: #ccc;
+    min-height: 500px;
 
     aside {
       background: #ccc;
@@ -232,6 +226,7 @@ body {
       background: #f5f5f5;
       box-sizing: border-box;
       transition: width 1s;
+      padding: 5px;
     }
 
     .isSectionFull {

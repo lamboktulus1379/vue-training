@@ -26,6 +26,7 @@ export default {
     font-size: 1.05em;
     border: none;
     outline: none;
+    background: none;
   }
 }
 </style>

@@ -13,4 +13,10 @@ export default {
   props: ["cities"]
 };
 </script>
+<style lang="scss" scoped>
+select {
+  width: 100%;
+}
+</style>
+
 
