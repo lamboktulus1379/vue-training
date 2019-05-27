@@ -8,18 +8,18 @@
     <div class="wrapper">
       <div class="aside-task">
         <ul>
-          <li>All Task</li>
-          <li>Completed</li>
-          <li>Important</li>
+          <li @click="filterTask=null">All Task</li>
+          <li @click="filterTask=1">Completed</li>
+          <li @click="filterTask=0">Pending</li>
         </ul>
       </div>
       <div class="main-task">
         <template>
           <template>
             <div class="box-task-container">
-              <template>
+              <template v-for="(task, indexTask) in taskContentTemps">
                 <div
-                  v-for="(task, indexTask) in taskContentTemps"
+                  v-if="task.attach===filterTask || filterTask===null"
                   :key="indexTask"
                   class="box-content"
                   :style="{opacity: task.attach < 2 ? '1':'0.75'}"
@@ -112,6 +112,7 @@ export default {
       taskContentTemps: [],
       hasClick: false,
       indexEdit: null,
+      filterTask: null,
 
       taskInputTemps: {
         name: "",
@@ -277,7 +278,7 @@ export default {
         display: flex;
         flex-flow: column;
         border: 1px solid #ccc;
-        width: 200px;
+        width: 300px;
         min-height: 150px;
         align-items: center;
         flex-direction: column;

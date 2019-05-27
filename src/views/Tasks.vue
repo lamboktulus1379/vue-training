@@ -1,6 +1,8 @@
 <template>
   <div class="tasks">
-    <boxTasks :taskContents="tasks"></boxTasks>
+    <template>
+      <boxTasks :taskContents="tasks"></boxTasks>
+    </template>
   </div>
 </template>
 
