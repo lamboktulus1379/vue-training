@@ -100,6 +100,8 @@ export default {
 
 
 <style lang="scss">
+$background-color: #224566;
+$link-color: #1e71a2;
 * {
   margin: 0;
   padding: 0;
@@ -112,7 +114,7 @@ export default {
   width: 100%;
 
   header {
-    background: #5dbcd2;
+    background: $background-color;
     width: 100%;
     height: 75px;
     display: flex;
@@ -132,8 +134,8 @@ export default {
     ul {
       list-style: none;
       z-index: 10000;
-      box-shadow: 2px 2px 2px #171717;
-      background: #171717;
+      box-shadow: 2px 2px 2px $background-color;
+      background: $link-color;
 
       li {
         position: relative;
@@ -146,7 +148,7 @@ export default {
           display: block;
           width: 100px;
           text-decoration: none;
-          background: #171717;
+          background: $link-color;
           color: white;
           width: 100%;
           font-weight: bold;
@@ -155,13 +157,13 @@ export default {
           padding: 5px;
           box-sizing: border-box;
           &.router-link-exact-active {
-            background: #5dbcd2;
+            background: $background-color;
             color: white;
           }
         }
 
         a:hover {
-          background: #5dbcd2;
+          background: $background-color;
           color: white;
         }
       }
