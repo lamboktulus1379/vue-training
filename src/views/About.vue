@@ -15,6 +15,7 @@
 </template>
 <script>
 import boxContent from "../components/boxContent";
+import axios from "axios";
 export default {
   data: () => {
     return {
@@ -37,6 +38,22 @@ export default {
       },
       todos: []
     };
+  },
+
+  methods: {
+    getData() {
+      axios
+        .get("https://localhost:44346/api/people")
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {})
+        .finally(() => {});
+    }
+  },
+
+  mounted() {
+    this.getData();
   },
 
   components: {
