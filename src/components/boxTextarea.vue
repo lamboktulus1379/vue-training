@@ -23,7 +23,9 @@ export default {
       paragraphTemp:
         "Technology has forever changed the world we live in. We're online, in one way or another, all day long. Our phones and computers have become reflections of our personalities, our interests, and our identities. They hold much that is important to us",
 
-      paraTemp: "Technology"
+      paraTemp: "Technology",
+
+      netAPI: null
     };
   },
 
@@ -49,6 +51,8 @@ export default {
         }
       }
     },
+
+    mounted() {},
 
     checkText($event) {
       if (this.paraTemp.includes(this.paraInput)) {

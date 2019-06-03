@@ -5,9 +5,9 @@
 
     <div :style="boxWrapper">
       <boxContent
-        :boxName="item.name"
-        :boxPrice="item.position"
-        v-for="(item, index) in items"
+        :boxName="p.firstName"
+        :boxPrice="p.lastName"
+        v-for="(p, index) in teams"
         :key="index"
       ></boxContent>
     </div>
@@ -24,11 +24,7 @@ export default {
         flexWrap: "wrap"
       },
 
-      items: [
-        { name: "Andi", position: "Programmer" },
-        { name: "Budi", position: "Programmer" },
-        { name: "Indra", position: "Programmer" }
-      ],
+      teams: null,
 
       boxContainer: {
         width: "300px",
@@ -43,8 +39,9 @@ export default {
   methods: {
     getData() {
       axios
-        .get("https://localhost:44346/api/people")
+        .get("https://localhost:44346/api/employee")
         .then(res => {
+          this.teams = res.data;
           console.log(res);
         })
         .catch(err => {})
