@@ -1,0 +1,17 @@
+{
+  "headMessage": "Our company",
+  "footMessage": "Our website",
+  "menu": {
+    "dashboard": "Dashboard",
+    "contact": "Contact",
+    "about": "About",
+    "employees": "Employees",
+    "product": "Products",
+    "login": "Login",
+    "register": "Register",
+    "galery": "Gallery",
+    "quiz": "Quiz Time",
+    "companies": "Companies",
+    "tasks": "Tasks"
+  }
+}
