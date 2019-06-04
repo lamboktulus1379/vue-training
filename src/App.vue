@@ -1,12 +1,21 @@
-<!DOCTYPE html>
 <template>
   <div id="app">
     <template>
       <div class="container">
         <template>
+          <div class="flag">
+            <span @click="setLocale('en')">
+              <flag title="English" iso="us"></flag>
+            </span>
+            <span @click="setLocale('id')">
+              <flag title="Bahasa Indonesia" iso="id"></flag>
+            </span>
+          </div>
+        </template>
+        <template>
           <header>
             <div class="container">
-              <h1>Our Company</h1>
+              <h1>{{ $t('headMessage')}}</h1>
             </div>
           </header>
         </template>
@@ -34,7 +43,7 @@
         <template>
           <footer>
             <p>
-              &copy; Our Website
+              &copy; {{ $t('footMessage')}}
               <span ref="footYear"></span>
             </p>
           </footer>
@@ -63,6 +72,13 @@ export default {
   },
 
   methods: {
+    setLocale(locale) {
+      import(`./langs/${locale}.json`).then(msgs => {
+        this.$i18n.setLocaleMessage(locale, msgs);
+        this.$i18n.locale = locale;
+      });
+      //this.$i18n.locale = locale;
+    },
     tSidebar() {
       this.tSidebarSection = !this.tSidebarSection;
       this.tSidebarAside = !this.tSidebarAside;
@@ -100,8 +116,8 @@ export default {
 
 
 <style lang="scss">
-$background-color: #224566;
-$link-color: #1e71a2;
+$background-color: #3700b3;
+$link-color: #6200ee;
 * {
   margin: 0;
   padding: 0;
@@ -113,6 +129,17 @@ $link-color: #1e71a2;
   flex-flow: column;
   width: 100%;
 
+  .flag {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    span {
+      margin-right: 2.5px;
+      & span:hover {
+        cursor: pointer;
+      }
+    }
+  }
   header {
     background: $background-color;
     width: 100%;

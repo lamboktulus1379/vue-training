@@ -8,7 +8,7 @@
       <ul>
         <li>
           <tooltip tooltip="This is dashboard!">
-            <router-link to="/">Dashboard</router-link>
+            <router-link to="/">{{$t('menu.dashboard')}}</router-link>
           </tooltip>
         </li>
         <li>
