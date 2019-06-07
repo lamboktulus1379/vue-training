@@ -13,60 +13,60 @@
         </li>
         <li>
           <tooltip tooltip="This is Contact!">
-            <router-link to="/contact">Contact</router-link>
+            <router-link to="/contact">{{$t('menu.contact')}}</router-link>
           </tooltip>
         </li>
         <li>
-          <router-link to="/about">About</router-link>
+          <router-link to="/about">{{$t('menu.about')}}</router-link>
         </li>
         <li>
-          <router-link to="/employees">Employees</router-link>
+          <router-link to="/employees">{{$t('menu.employees')}}</router-link>
         </li>
         <li>
-          <router-link to="/products">Products</router-link>
+          <router-link to="/products">{{$t('menu.products')}}</router-link>
         </li>
         <li>
-          <router-link to="/login">Login</router-link>
+          <router-link to="/login">{{$t('menu.login')}}</router-link>
         </li>
         <li>
-          <router-link to="/register">Register</router-link>
+          <router-link to="/register">{{$t('menu.register')}}</router-link>
         </li>
         <li>
-          <router-link to="/gallery">Gallery</router-link>
+          <router-link to="/gallery">{{$t('menu.gallery')}}</router-link>
         </li>
         <li>
-          <router-link to="/quiz">Quiz Time</router-link>
+          <router-link to="/quiz">{{$t('menu.quiz')}}</router-link>
         </li>
         <li>
-          <router-link to="/companies">Companies</router-link>
+          <router-link to="/companies">{{$t('menu.companies')}}</router-link>
           <ul>
             <li>
-              <router-link to="/companyOne">Company1</router-link>
+              <router-link to="/companyOne">{{$t('menu.companyOne')}}</router-link>
             </li>
             <li>
-              <router-link to="/companyTwo">Company2</router-link>
+              <router-link to="/companyTwo">{{$t('menu.companyTwo')}}</router-link>
             </li>
             <li>
-              <router-link to="/companyThree">Company3</router-link>
+              <router-link to="/companyThree">{{$t('menu.companyThree')}}</router-link>
             </li>
             <li>
-              <router-link to="/companyFour">Company4</router-link>
+              <router-link to="/companyFour">{{$t('menu.companyFour')}}</router-link>
               <ul>
                 <li>
-                  <router-link to="/companyFour1">Company41</router-link>
+                  <router-link to="/companyFour1">{{$t('menu.companyFourOne')}}</router-link>
                 </li>
                 <li>
-                  <router-link to="/companyFour2">Company42</router-link>
+                  <router-link to="/companyFour2">{{$t('menu.companyFourTwo')}}</router-link>
                 </li>
                 <li>
-                  <router-link to="/companyFour3">Company43</router-link>
+                  <router-link to="/companyFour3">{{$t('menu.companyFourThree')}}</router-link>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li>
-          <router-link to="/tasks">Tasks</router-link>
+          <router-link to="/tasks">{{$t('menu.tasks')}}</router-link>
         </li>
       </ul>
     </nav>
