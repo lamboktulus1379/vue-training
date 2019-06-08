@@ -5,8 +5,8 @@
 
     <div :style="boxWrapper">
       <boxContent
-        :boxName="p.firstName"
-        :boxPrice="p.lastName"
+        :boxName="p.FirstName"
+        :boxPrice="p.LastName"
         v-for="(p, index) in teams"
         :key="index"
       ></boxContent>
@@ -42,7 +42,7 @@ export default {
         .get("https://localhost:44346/api/employee")
         .then(res => {
           this.teams = res.data;
-          console.log(res);
+          console.log(res.data);
         })
         .catch(err => {})
         .finally(() => {});
