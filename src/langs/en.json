@@ -9,9 +9,17 @@
     "products": "Products",
     "login": "Login",
     "register": "Register",
-    "galery": "Gallery",
+    "gallery": "Gallery",
     "quiz": "Quiz Time",
     "companies": "Companies",
+    "companyOne": "Company1",
+    "companyTwo": "Company2",
+    "companyThree": "Company3",
+    "companyFour": "Company4",
+    "companyFourOne": "Company41",
+    "companyFourTwo": "company42",
+    "companyFourThree": "company43",
+
     "tasks": "Tasks"
   }
 }

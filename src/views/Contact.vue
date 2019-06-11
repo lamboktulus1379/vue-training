@@ -1,6 +1,8 @@
 <template>
   <div class="contact">
-    <h1>Contact</h1>
+    <h1>
+      <font-awesome-icon icon="address-card"/>Contact
+    </h1>
 
     <ul id="ul-users">
       <li v-for="(item, index) in usersData" :key="index">{{ item.text }}</li>
@@ -45,7 +47,27 @@
     </div>
 
     <button @click="toggleDiv">Change div</button>
+
+    <template>
+      <nav>
+        <ul>
+          <li>
+            <span class="icon login"></span> Login
+          </li>
+          <li>
+            <span class="icon tps"></span> TPS Reports
+          </li>
+          <li>
+            <span class="icon twitter"></span> Twitter
+          </li>
+        </ul>
+      </nav>
+    </template>
   </div>
+</template>
+  </div>
+
+
 </template>
 <script>
 export default {
@@ -87,7 +109,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+nav {
+  margin-top: 15px;
+}
 ul {
   list-style: none;
+}
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.login::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f007";
+}
+
+.tps::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f1ea";
+}
+
+.twitter::before {
+  font-family: "Font Awesome 5 Brands";
+  content: "\f099";
 }
 </style>

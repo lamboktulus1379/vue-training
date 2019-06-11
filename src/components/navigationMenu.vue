@@ -13,7 +13,10 @@
         </li>
         <li>
           <tooltip tooltip="This is Contact!">
-            <router-link to="/contact">{{$t('menu.contact')}}</router-link>
+            <router-link to="/contact">
+              <font-awesome-icon icon="address-card" size="xs"/>
+              {{ $t('menu.contact')}}
+            </router-link>
           </tooltip>
         </li>
         <li>
@@ -26,7 +29,9 @@
           <router-link to="/products">{{$t('menu.products')}}</router-link>
         </li>
         <li>
-          <router-link to="/login">{{$t('menu.login')}}</router-link>
+          <router-link to="/login">
+            <span class="icon login">{{$t('menu.login')}}</span>
+          </router-link>
         </li>
         <li>
           <router-link to="/register">{{$t('menu.register')}}</router-link>
@@ -105,6 +110,30 @@ export default {
 };
 </script>
 <style lang="scss" >
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.login::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f007";
+}
+
+.tps::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f1ea";
+}
+
+.twitter::before {
+  font-family: "Font Awesome 5 Brands";
+  content: "\f099";
+}
 .sticky {
   position: fixed;
   top: 0;

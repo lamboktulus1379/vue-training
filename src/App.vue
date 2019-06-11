@@ -4,6 +4,10 @@
       <div class="container">
         <template>
           <div class="flag">
+            <span class="fab fa-github-square"></span>
+            <span>
+              <font-awesome-icon icon="coffee"/>
+            </span>
             <span @click="setLocale('en')">
               <flag title="English" iso="us"></flag>
             </span>
@@ -56,6 +60,7 @@
 <script>
 import navigationMenu from "@/components/navigationMenu";
 export default {
+  name: "App",
   data: function() {
     return {
       cookieName: "userToken",

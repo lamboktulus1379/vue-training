@@ -9,9 +9,13 @@
     "products": "Produk",
     "login": "Masuk",
     "register": "Daftar",
-    "galery": "Galeri",
+    "gallery": "Galeri",
     "quiz": "Pertanyaan",
     "companies": "Perusahaan",
+    "companyOne": "Perusahaan1",
+    "companyTwo": "Perusahaan2",
+    "companyThree": "Perusahaan3",
+    "companyFour": "Perusahaan4",
     "tasks": "Tugas"
   }
 }
