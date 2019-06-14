@@ -154,7 +154,7 @@ export default {
     .indicator-content {
       width: 10px;
       height: 10px;
-      background: #5dbcd2;
+      background: radial-gradient(circle, #5dbcd2, #5e12c6);
       border-radius: 50%;
       box-shadow: 1px 1px 0.5px #f5f5f5;
       transition: "box-shadow" ease-in 2s;
@@ -164,7 +164,7 @@ export default {
       cursor: pointer;
     }
     .active {
-      background: #5e12c6;
+      background: radial-gradient(circle, #5e12c6, #5dbcd2);
       box-shadow: none;
     }
     img {

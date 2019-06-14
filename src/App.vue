@@ -146,7 +146,7 @@ $link-color: #6200ee;
     }
   }
   header {
-    background: $background-color;
+    background: linear-gradient(60deg, $background-color, $link-color);
     width: 100%;
     height: 75px;
     display: flex;
@@ -188,6 +188,7 @@ $link-color: #6200ee;
           font-size: 17px;
           padding: 5px;
           box-sizing: border-box;
+          text-shadow: 2px 2px 2px $background-color;
           &.router-link-exact-active {
             background: $background-color;
             color: white;

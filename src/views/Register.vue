@@ -257,13 +257,14 @@ export default {
 <style lang="scss" scoped>
 .form-wrapper {
   width: 500px;
+  margin-top: 20px;
 
   .form-content {
-    margin-top: 10px;
     border-radius: 0 0 5px 0;
-    padding: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 2px #ccc;
+    min-height: 50px;
+    margin-top: 15px;
 
     .showClass {
       visibility: visible;

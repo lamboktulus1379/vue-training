@@ -29,9 +29,7 @@
           <router-link to="/products">{{$t('menu.products')}}</router-link>
         </li>
         <li>
-          <router-link to="/login">
-            <span class="icon login">{{$t('menu.login')}}</span>
-          </router-link>
+          <router-link to="/login">{{$t('menu.login')}}</router-link>
         </li>
         <li>
           <router-link to="/register">{{$t('menu.register')}}</router-link>

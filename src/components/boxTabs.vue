@@ -47,6 +47,7 @@ export default {
       color: white;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       font-size: 1.05em;
+      text-shadow: 2px 2px 2px black;
     }
     a.active {
       background: white;

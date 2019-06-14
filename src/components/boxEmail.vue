@@ -1,16 +1,16 @@
 <template>
   <div class="box-email">
     <div class="box-email-wrapper">
-      <div @click="toggleFocus" @blur="toggleFocus" class="box-email-content">
-        <label :class="{focus: isFocus, noFocus: isNotFocus}" :for="label">{{ label }}</label>
+      <div class="box-email-content">
         <input
           ref="inputEmail"
           @input="$emit('input', $event.target.value)"
-          :class="{focusInput: isFocusInput, noFocusInput: isNotFocusInput}"
           :value="value"
-          autocomplete="false"
+          required
+          autocomplete="off"
           :disabled="placeholder"
         >
+        <label :for="label">{{ label }}</label>
         {{ inputDescription }}
       </div>
     </div>
@@ -29,17 +29,7 @@ export default {
   },
 
   props: ["value", "label", "placeholder", "type", "inputDescription"],
-  methods: {
-    toggleFocus: function() {
-      if (this.value.length < 1) {
-        this.isNotFocus = !this.isNotFocus;
-        this.isFocus = !this.isFocus;
-
-        this.isFocusInput = !this.isFocusInput;
-        this.isNotFocusInput = !this.isNotFocusInput;
-      }
-    }
-  }
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -55,34 +45,39 @@ export default {
 
     label {
       display: block;
-      position: absolute;
-      top: 3px;
-      left: 5px;
-      border: 1px solid green($color: #000000);
-      transition: top ease 0.5s;
-      z-index: 9999;
-      background: #f5f5f5;
-      padding: 0 5px 0 5px;
+      position: relative;
+      top: -20px;
+      left: 0px;
+      color: #999;
+      font-family: "Helvetica", sans-serif;
+      font-size: 16px;
+      z-index: 1;
+      transition: all 0.3s ease-out;
     }
 
     input {
-      box-sizing: border-box;
-      text-align: left;
-      width: 100%;
-      height: 100%;
-      background: #f5f5f5;
-      font-size: 1.25em;
+      display: block;
+      position: relative;
+      background: none;
       border: none;
-      outline: none;
+      width: 100%;
+      font-family: "Helvetica", sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      z-index: 2;
     }
 
-    .focus {
-      top: -15px;
+    input:focus,
+    input:valid {
+      outline: none;
+      border-bottom: 1px solid #00aced;
     }
 
-    .focusInput {
-      color: black;
-      outline: none;
+    input:focus + label,
+    input:valid + label {
+      top: -40px;
+      font-size: 11px;
+      color: #00aced;
     }
   }
 }
