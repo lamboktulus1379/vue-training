@@ -11,6 +11,42 @@
         :key="index"
       ></boxContent>
     </div>
+
+    <h3>Basic Counter</h3>
+    <div class="counter-demo">
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+      <a href="#"></a>
+    </div>
+    <div class="divider"></div>
+    <h3>Multiple Counter</h3>
+    <div class="multiple-counter-demo">
+      <section>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </section>
+      <section>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </section>
+      <section>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </section>
+    </div>
   </div>
 </template>
 <script>
@@ -58,3 +94,64 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.divider {
+  display: block;
+  clear: both;
+  margin-top: 15px;
+}
+.counter-demo {
+  counter-reset: pages;
+  display: block;
+
+  a {
+    counter-increment: pages;
+
+    &::before {
+      content: counter(pages);
+    }
+  }
+
+  a {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    float: left;
+    background: #ccc;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+  }
+}
+.multiple-counter-demo {
+  counter-reset: sections boxes;
+}
+section {
+  counter-increment: sections;
+  display: flex;
+  &::before {
+    content: "Section " counter(sections);
+  }
+
+  .box {
+    counter-increment: boxes;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    margin-left: 2.5px;
+
+    &::before {
+      content: counter(boxes, upper-roman);
+    }
+  }
+}
+</style>
+
