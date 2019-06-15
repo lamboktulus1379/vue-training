@@ -144,7 +144,6 @@ section {
     border-radius: 5px;
     display: flex;
     justify-content: center;
-
     align-items: center;
     margin-left: 2.5px;
 

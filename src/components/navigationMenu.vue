@@ -23,6 +23,9 @@
           <router-link to="/about">{{$t('menu.about')}}</router-link>
         </li>
         <li>
+          <router-link to="/CV">{{$t('menu.cv')}}</router-link>
+        </li>
+        <li>
           <router-link to="/employees">{{$t('menu.employees')}}</router-link>
         </li>
         <li>

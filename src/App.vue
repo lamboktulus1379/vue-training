@@ -123,6 +123,163 @@ export default {
 <style lang="scss">
 $background-color: #3700b3;
 $link-color: #6200ee;
+
+@media screen and (min-width: 600px) {
+  .nav {
+    position: relative;
+
+    ul {
+      list-style: none;
+      z-index: 10000;
+      box-shadow: 2px 2px 2px $background-color;
+      background: $link-color;
+
+      li {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        text-align: center;
+        white-space: nowrap;
+        a {
+          display: block;
+          width: 100px;
+          text-decoration: none;
+          background: $link-color;
+          color: white;
+          width: 100%;
+          font-weight: bold;
+          position: relative;
+          font-size: 17px;
+          padding: 5px;
+          box-sizing: border-box;
+          text-shadow: 2px 2px 2px $background-color;
+          &.router-link-exact-active {
+            background: $background-color;
+            color: white;
+          }
+        }
+
+        a:hover {
+          background: $background-color;
+          color: white;
+        }
+      }
+    }
+
+    & > ul {
+      list-style: none;
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: center;
+
+      & > li {
+        & > ul {
+          list-style: none;
+          position: absolute;
+          top: 30px;
+          left: 0;
+          display: none;
+          flex-flow: column;
+          & > li {
+            & > ul {
+              position: absolute;
+              top: 0px;
+              left: 100px;
+              display: none;
+              flex-flow: column;
+            }
+          }
+          & > li:hover > ul {
+            display: flex;
+          }
+        }
+      }
+      & > li:hover > ul {
+        display: flex;
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .nav {
+    position: relative;
+
+    ul {
+      list-style: none;
+      z-index: 10000;
+      box-shadow: 2px 2px 2px $background-color;
+      background: $link-color;
+
+      li {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        text-align: center;
+        white-space: nowrap;
+        a {
+          display: block;
+          width: 100px;
+          text-decoration: none;
+          background: $link-color;
+          color: white;
+          width: 100%;
+          font-weight: bold;
+          position: relative;
+          font-size: 17px;
+          padding: 5px;
+          box-sizing: border-box;
+          text-shadow: 2px 2px 2px $background-color;
+          &.router-link-exact-active {
+            background: $background-color;
+            color: white;
+          }
+        }
+
+        a:hover {
+          background: $background-color;
+          color: white;
+        }
+      }
+    }
+
+    & > ul {
+      list-style: none;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+
+      & > li {
+        & > ul {
+          list-style: none;
+          position: absolute;
+          top: 30px;
+          left: 0;
+          display: none;
+          flex-flow: column;
+          & > li {
+            & > ul {
+              position: absolute;
+              top: 0px;
+              left: 100px;
+              display: none;
+              flex-flow: column;
+            }
+          }
+          & > li:hover > ul {
+            display: flex;
+          }
+        }
+      }
+      & > li:hover > ul {
+        display: flex;
+      }
+    }
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -156,86 +313,9 @@ $link-color: #6200ee;
       text-align: center;
     }
   }
+
   .navigation {
     position: relative;
-  }
-
-  .nav {
-    position: relative;
-
-    ul {
-      list-style: none;
-      z-index: 10000;
-      box-shadow: 2px 2px 2px $background-color;
-      background: $link-color;
-
-      li {
-        position: relative;
-        justify-content: center;
-        align-items: center;
-        width: 100px;
-        text-align: center;
-
-        a {
-          display: block;
-          width: 100px;
-          text-decoration: none;
-          background: $link-color;
-          color: white;
-          width: 100%;
-          font-weight: bold;
-          position: relative;
-          font-size: 17px;
-          padding: 5px;
-          box-sizing: border-box;
-          text-shadow: 2px 2px 2px $background-color;
-          &.router-link-exact-active {
-            background: $background-color;
-            color: white;
-          }
-        }
-
-        a:hover {
-          background: $background-color;
-          color: white;
-        }
-      }
-    }
-
-    & > ul {
-      list-style: none;
-      display: flex;
-      flex-flow: row;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-
-      & > li {
-        & > ul {
-          list-style: none;
-          position: absolute;
-          top: 30px;
-          left: 0;
-          display: none;
-          flex-flow: column;
-          & > li {
-            & > ul {
-              position: absolute;
-              top: 0px;
-              left: 100px;
-              display: none;
-              flex-flow: column;
-            }
-          }
-          & > li:hover > ul {
-            display: flex;
-          }
-        }
-      }
-      & > li:hover > ul {
-        display: flex;
-      }
-    }
   }
 
   .sticky {
